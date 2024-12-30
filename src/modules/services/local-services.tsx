@@ -7,7 +7,7 @@ export default function LocalServices() {
       title="Give your customers ability to do more..."
       description="Select Services you want your customers to have access to"
     >
-      <div className="grid grid-cols-3 gap-y-[3.5rem] gap-x-[7rem] p-[3rem]">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-y-[1.5rem] md:gap-y-[3.5rem] gap-x-[7rem] px-[1.5rem]  py-[2.5rem] md:px-[3rem] md:p-[3rem]">
         {data.map((item, idx) => (
           <ServiceComponent {...item} key={idx} />
         ))}
@@ -20,10 +20,12 @@ const ServiceComponent: React.FC<(typeof data)[0]> = (props) => {
   return (
     <div className="p-4 hover:bg-opacity-5 hover:bg-primary  rounded-md">
       <div className="flex justify-between items-center mb-5">
-        <h2 className="text-lg font-semibold text-[#1E3F52]">{props.title}</h2>
+        <h2 className="text-base md:text-lg font-semibold text-[#1E3F52]">
+          {props.title}
+        </h2>
         <CustomToggle />
       </div>
-      <p className="text-sm text-[#5C5C60] leading-[1.326rem]">
+      <p className="text-xs md:text-sm text-[#5C5C60] leading-[1.326rem]">
         {props.description}
       </p>
     </div>

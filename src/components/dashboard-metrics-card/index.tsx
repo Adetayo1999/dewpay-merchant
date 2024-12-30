@@ -17,11 +17,11 @@ interface DashboardMetricType {
 
 const DashboardMetricData: React.FC<DashboardMetricType> = (props) => {
   return (
-    <div className="col-span-4 ">
+    <div className="md:col-span-4 border-b md:border-none border-[#FFFFFF] border-opacity-20 pb-4 md:pb-0 last:border-none ">
       <div
         className={clsx(
-          "flex  gap-x-10 mb-2 ",
-          props.idx !== 2 && "border-r border-[#FFFFFF] border-opacity-40"
+          "flex justify-between md:justify-start  gap-x-10 mb-2 ",
+          props.idx !== 2 && " md:border-r border-[#FFFFFF] border-opacity-40"
         )}
       >
         <div
@@ -33,14 +33,16 @@ const DashboardMetricData: React.FC<DashboardMetricType> = (props) => {
           {props.icon}
         </div>
         <div className="">
-          <p className="text-sm text-[#FFFFFF80] mb-4">{props.title}</p>
-          <h2 className="text-white font-bold text-2xl">
+          <p className="text-xs md:text-sm text-[#FFFFFF80] mb-2 md:mb-4">
+            {props.title}
+          </p>
+          <h2 className="text-white font-bold text-xl md:text-2xl">
             {formatCurrency(props.metric, props.currency)}
           </h2>
         </div>
       </div>
       <div className="">
-        <p className="flex items-center gap-x-1 text-sm text-[#FFFFFF80]">
+        <p className="justify-end md:justify-start flex items-center gap-x-1  text-xs md:text-sm text-[#FFFFFF80]">
           <span>
             {props.percentage > 0 ? (
               <TrendingUpIcon scale={0.8} />
@@ -67,7 +69,7 @@ const DashboardMetricData: React.FC<DashboardMetricType> = (props) => {
 
 export const DashboardMetricsCard = () => {
   return (
-    <div className="bg-[#122A2C] rounded-[0.938rem] py-[1.938rem] px-[4.563rem] grid grid-cols-12 gap-x-10">
+    <div className="bg-[#122A2C] rounded-[0.938rem] py-[1.938rem] px-[2.5rem] gap-y-[2rem] md:gap-y-0 flex flex-col md:px-[4.563rem] md:grid md:grid-cols-12 gap-x-10">
       {data.map((item, idx) => (
         <DashboardMetricData {...item} key={idx} idx={idx} />
       ))}

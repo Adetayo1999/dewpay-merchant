@@ -3,15 +3,18 @@ import clsx from "clsx";
 
 export const UsersMetricCard = () => {
   return (
-    <div className="bg-[#122A2C] flex justify-between  rounded-[0.938rem] py-[1.938rem] px-[4.563rem]">
-      <div className="border-r border-[#FFFFFF] flex-[0.3] ">
-        <h2 className="font-bold text-white text-3xl mb-2">Users</h2>
-        <p className="text-base text-[#FFFFFF80] max-w-xs">
+    <div className="bg-[#122A2C] flex flex-col md:flex-row gap-y-10 justify-between  rounded-[0.938rem] py-[1.938rem]  px-[2rem] md:px-[4.563rem]">
+      <div className="md:border-r border-[#FFFFFF] md:flex-[0.3] flex flex-col items-end md:items-start   md:justify-start text-right md:text-left">
+        <h2 className="font-bold text-white text-xl md:text-3xl mb-2">Users</h2>
+        <p className="text-xs md:text-base  max-w-xs    text-[#FFFFFF80]">
           View number of unique users that patronizes your business
         </p>
+        <div className="md:hidden  w-full flex justify-end pt-4">
+          <div className="w-[45%] bg-[#FFFFFF] h-[1px] bg-opacity-40 " />
+        </div>
       </div>
       <div className="flex-[0.3]">
-        <div className="flex justify-between gap-x-12 mb-4">
+        <div className="flex justify-between gap-x-12 mb-0 md:mb-4">
           <div className="h-[2.856rem] w-[2.856rem] flex items-center justify-center rounded-full bg-[#8280FF] bg-opacity-[0.21]">
             <svg
               width="22"
@@ -36,12 +39,14 @@ export const UsersMetricCard = () => {
             </svg>
           </div>
           <div className="">
-            <p className="text-sm text-[#FFFFFF80] mb-1">Total Unique users</p>
-            <h2 className="text-white font-bold text-2xl ">764</h2>
+            <p className="text-xs md:text-sm text-[#FFFFFF80] mb-1">
+              Total Unique users
+            </p>
+            <h2 className="text-white font-bold text-xl md:text-2xl ">764</h2>
           </div>
         </div>
         <div className="">
-          <p className="flex items-center gap-x-1 text-sm text-[#FFFFFF80]">
+          <p className="flex justify-end md:justify-start text-xs items-center gap-x-1 md:text-sm text-[#FFFFFF80]">
             <span>
               <TrendingUpIcon scale={0.8} />
             </span>

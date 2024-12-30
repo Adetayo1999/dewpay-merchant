@@ -8,7 +8,7 @@ export const renderInputLabel = (
     return (
       <label
         className={clsx(
-          `text-sm  text-[#7D8592] font-medium`,
+          `text-sm hidden md:block text-[#7D8592] font-medium`,
           required
             ? "relative after:absolute after:content-['*'] after:text-red-600"
             : ""

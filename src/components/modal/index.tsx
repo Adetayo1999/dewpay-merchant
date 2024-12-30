@@ -21,7 +21,7 @@ export const ModalContainer: React.FC<{
         exit={{ x: "-250%" }}
         // transition={{ type: "spring", stiffness: 300, damping: 30 }}
         className={clsx(
-          " bg-white border border-[#DEE2E6] shadow-[0px_0px_2px_0px_#0000001F] rounded-lg min-w-[30rem] 2xl:min-w-[35rem] px-4 py-3",
+          " bg-white border border-[#DEE2E6] shadow-[0px_0px_2px_0px_#0000001F] md:rounded-lg rounded-2xl min-w-[27rem] md:w-fit 2xl:min-w-[35rem] px-4 py-3",
           className
         )}
         onClick={(e) => e.stopPropagation()}
@@ -49,7 +49,9 @@ export const ModalContainer: React.FC<{
             </div>
             {title && (
               <div className="text-center">
-                <h2 className="text-[#202224] font-medium text-xl">{title}</h2>
+                <h2 className="text-[#202224] font-medium text-lg md:text-xl">
+                  {title}
+                </h2>
               </div>
             )}
           </div>

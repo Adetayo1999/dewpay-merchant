@@ -7,10 +7,7 @@ export const UserPermissionsModal = () => {
   const { setModalContent } = useModal();
 
   return (
-    <ModalContainer
-      className="rounded-xl pb-[4rem] w-[70%] mx-auto"
-      hasCancel={false}
-    >
+    <ModalContainer className="rounded-xl pb-[4rem]  mx-auto" hasCancel={false}>
       <div className="flex justify-between items-center p-5  mb-8">
         <h6 className="text-sm font-medium text-[#7E92A2]">User Permissions</h6>
         <button
@@ -21,14 +18,18 @@ export const UserPermissionsModal = () => {
         </button>
       </div>
 
-      <div className="px-5">
+      <div className="  md:px-5">
         <div className="bg-[#F5F6FA] py-4 rounded-lg items-center flex justify-between mb-7">
           <div className="flex-[0.4]" />
           <div className="flex-[0.25] flex-shrink-0">
-            <p className="font-medium text-sm text-[#8A92A6]">Read</p>
+            <p className="font-medium text-xs md:text-sm text-[#8A92A6]">
+              Read
+            </p>
           </div>
           <div className="flex-[0.25] flex-shrink-0">
-            <p className="font-medium text-[#8A92A6] text-sm">Write</p>
+            <p className="font-medium text-[#8A92A6] text-xs md:text-sm">
+              Write
+            </p>
           </div>
         </div>
         <div className="flex flex-col gap-y-5">
@@ -43,7 +44,9 @@ export const UserPermissionsModal = () => {
           ].map((item, idx) => (
             <div className="flex justify-between items-center" key={idx}>
               <div className="flex-[0.4] ">
-                <p className="text-[#232D42] w-[70%] mx-auto">{item}</p>
+                <p className="text-[#232D42] text-xs md:text-sm w-[70%] mx-auto">
+                  {item}
+                </p>
               </div>
               <div className="flex-[0.25] flex-shrink-0">
                 <CustomCheckbox hasLabel={false} state />

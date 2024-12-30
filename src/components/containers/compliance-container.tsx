@@ -9,7 +9,7 @@ export const ComplianceContainer: React.FC<HTMLAttributes<HTMLDivElement>> = ({
   return (
     <div
       className={clsx(
-        "bg-white shadow-[0px_0px_23px_0px_#0000001A] rounded-[0.938rem] py-[2.438rem] px-[5.25rem] min-h-[40rem]",
+        "bg-white shadow-[0px_0px_23px_0px_#0000001A] rounded-[0.938rem] py-[2.438rem] px-6 md:px-[5.25rem] min-h-[40rem]",
         className
       )}
       {...rest}
@@ -38,8 +38,12 @@ export const ComplianceContainer: React.FC<HTMLAttributes<HTMLDivElement>> = ({
           </svg>
         </div>
         <div className="">
-          <h4 className="text-[#7D8592] font-bold text-lg">CAP Suite</h4>
-          <p className="text-sm text-[#7D8592]">alex.doe@gmail.com</p>
+          <h4 className="text-[#7D8592] font-bold text-base md:text-lg">
+            CAP Suite
+          </h4>
+          <p className="text-xs md:text-sm text-[#7D8592]">
+            alex.doe@gmail.com
+          </p>
         </div>
       </div>
       {children}

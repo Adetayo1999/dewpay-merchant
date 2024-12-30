@@ -7,7 +7,9 @@ export default function GlobalServices() {
       description="You will be able to sell and receive payment from your customers around the world."
     >
       <div className="p-[5.188rem] pt-[6rem]">
-        <h2 className="text-[#202224CC] text-4xl font-bold">Coming soon...</h2>
+        <h2 className="text-[#202224CC] text-2xl md:text-4xl font-bold">
+          Coming soon...
+        </h2>
       </div>
     </ServicesContainer>
   );

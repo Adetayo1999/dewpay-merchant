@@ -44,14 +44,14 @@ const CustomCheckbox = React.forwardRef(
           />
           <div
             className={clsx(
-              "relative w-[1.5rem] h-[1.5rem] rounded transition duration-300 flex justify-center items-center border-2  border-[#7D8592]",
+              "relative w-[1.3rem] h-[1.3rem] md:w-[1.5rem] md:h-[1.5rem] rounded transition duration-300 flex justify-center items-center border-2  border-[#7D8592]",
               variant && cbState && "bg-[#7D8592]",
               checkBoxClassName
             )}
           >
             <FaCheck
               className={clsx({
-                "text-sm": true,
+                "text-xs md:text-sm": true,
                 [`${checkmarkClassname}`]: true,
                 "text-white visible": variant && cbState,
                 "text-[#7D8592] visible": !variant && cbState,

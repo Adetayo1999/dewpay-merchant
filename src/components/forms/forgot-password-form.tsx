@@ -26,9 +26,9 @@ export const ForgotPasswordForm = () => {
 
       <div className="flex  gap-y-5 flex-col justify-center items-center">
         <CustomButton
-          variant="primary"
+          variant="auth"
           disabled={!isValid}
-          className="w-full rounded-lg p-4  font-medium"
+          className="w-full rounded-lg text-sm md:text-base  p-3 md:p-4  font-medium "
         >
           Proceed
         </CustomButton>
@@ -38,7 +38,7 @@ export const ForgotPasswordForm = () => {
               <Link
                 to={item.path}
                 key={idx}
-                className="text-sm text-primary  hover:underline "
+                className="text-xs md:text-sm text-white md:text-primary  hover:underline "
               >
                 {item.title}
               </Link>

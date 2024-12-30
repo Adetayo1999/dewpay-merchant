@@ -4,7 +4,7 @@ import { renderInputLabel } from "@components/form-elements/label";
 import { CustomSelect } from "@components/form-elements/select";
 import { paths } from "@routes/paths";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import countries from "@lib/countries.json";
 
 interface FormType {
@@ -22,8 +22,13 @@ export const RegisterForm = () => {
     formState: { errors, isValid },
   } = useForm<FormType>();
 
+  const navigate = useNavigate();
+
   return (
-    <form className="flex flex-col gap-y-4" onSubmit={handleSubmit(() => {})}>
+    <form
+      className="flex flex-col gap-y-4"
+      onSubmit={handleSubmit(() => navigate(paths.auth.login))}
+    >
       <AuthCustomInput
         label="Business Name"
         placeholder="Enter your business name"
@@ -39,7 +44,7 @@ export const RegisterForm = () => {
       <div className="flex flex-col gap-y-2">
         {renderInputLabel("Mobile Number")}
         <div className="flex gap-x-4">
-          <div className="flex-[0.55]">
+          <div className="flex-[0.8] md:flex-[0.55]">
             <CustomSelect
               options={countries.map((item) => ({
                 label: `${item.flag} ${item.code}`,
@@ -66,16 +71,16 @@ export const RegisterForm = () => {
       />
       <div className="flex  gap-y-5 flex-col justify-center items-center mt-5">
         <CustomButton
-          variant="primary"
+          variant="auth"
           disabled={!isValid}
-          className="w-full rounded-lg p-4 font-medium"
+          className="w-full rounded-lg text-sm md:text-base  p-3 md:p-4  font-medium "
         >
           Create Account
         </CustomButton>
         <div className="">
           <Link
             to={paths.auth.login}
-            className="text-sm text-primary  hover:underline font-medium"
+            className="text-xs md:text-sm text-white md:text-primary  hover:underline font-medium"
           >
             Sign In
           </Link>

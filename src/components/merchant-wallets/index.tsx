@@ -9,16 +9,16 @@ interface MerchantWalletCardProps {
 
 const MerchantWalletCard: React.FC<MerchantWalletCardProps> = (props) => {
   return (
-    <div className=" bg-[linear-gradient(258.35deg,#B469FF_-0.64%,#8555C1_96.47%)] relative even:bg-[linear-gradient(258.35deg,#6C95FF_-0.65%,#3D69DB_96.47%)] w-[21.188rem] h-[11.938rem] rounded-xl flex flex-col justify-between shadow-[0px_4px_24px_0px_#00000040] px-[1.563rem] py-[0.813rem] pt-[2.125rem]">
+    <div className=" bg-[linear-gradient(258.35deg,#B469FF_-0.64%,#8555C1_96.47%)] relative even:bg-[linear-gradient(258.35deg,#6C95FF_-0.65%,#3D69DB_96.47%)] md:w-[21.188rem] h-[11.938rem] rounded-xl flex flex-col justify-between shadow-[0px_4px_24px_0px_#00000040] px-[1.563rem] py-[0.813rem] pt-[2.125rem]">
       <div className="relative z-50">
-        <p className="text-sm text-[#FFFFFF99]">Current Balance</p>
-        <h3 className="text-[#FFFFFF] font-bold text-[1.75rem]">
+        <p className="text-xs md:text-sm text-[#FFFFFF99]">Current Balance</p>
+        <h3 className="text-[#FFFFFF] font-bold text-[1.65rem] md:text-[1.75rem]">
           {formatCurrency(props.amount, props.currency)}
         </h3>
       </div>
       <div className="flex justify-between relative z-50">
         <div className="">
-          <p className="text-sm text-[#FFEF60] font-semibold ">
+          <p className="text-xs md:text-sm text-[#FFEF60] font-semibold mb-2 md:mb-0 ">
             {props.account_number.slice(0, 8) + "* ****"}
           </p>
           <p className="text-xs text-[#FFEF60] tracking-[20%]">{props.bank}</p>
@@ -74,7 +74,7 @@ const MerchantWalletCard: React.FC<MerchantWalletCardProps> = (props) => {
 
 export const MerchantWallets = () => {
   return (
-    <div className="flex gap-x-6">
+    <div className="flex flex-col md:flex-row gap-y-6 gap-x-6">
       <MerchantWalletCard
         currency="NGN"
         amount={200200000}

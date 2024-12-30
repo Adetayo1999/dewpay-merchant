@@ -55,7 +55,11 @@ export const TeamsTable = () => {
 
   return (
     <div className="flex flex-col gap-y-4">
-      <DefaultTable data={data} columns={columns} className="min-h-[45rem]" />
+      <DefaultTable
+        data={data}
+        columns={columns}
+        className="min-h-[30rem] md:min-h-[45rem]"
+      />
       <TablePagination page={1} total={100} />
     </div>
   );

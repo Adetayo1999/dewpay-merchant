@@ -15,13 +15,13 @@ const ChartLegenedInfo: React.FC<{
           className="h-2 w-2 rounded-full "
           style={{ background: props.color }}
         />
-        <p className="text-sm text-[#8E95A9]">{props.title}</p>
+        <p className="text-xs md:text-sm text-[#8E95A9]">{props.title}</p>
       </div>
       <div className="flex items-center gap-x-8">
-        <h6 className="text-sm text-[#7D8592]">
+        <h6 className="text-xs md:text-sm text-[#7D8592]">
           {formatCurrency(props.amount, "NGN")}
         </h6>
-        <p className="text-sm text-[#8E95A9]">{props.percentage}%</p>
+        <p className="text-xs md:text-sm text-[#8E95A9]">{props.percentage}%</p>
       </div>
     </div>
   );
@@ -30,14 +30,16 @@ const ChartLegenedInfo: React.FC<{
 /* eslint-disable @typescript-eslint/no-explicit-any */
 export const DashboardRevenueByPaymentMetric = () => {
   return (
-    <div className=" shadow-[0px_8px_32px_0px_#3326AE05] rounded-2xl h-[33.313rem] col-span-6 p-8">
+    <div className=" shadow-[0px_8px_32px_0px_#3326AE14] bg-white rounded-2xl md:h-[33.313rem] md:col-span-6 px-4 md:p-8 py-8">
       <div className="">
-        <p className="text-[#7D8592] font-medium ">Revenue by Payment Method</p>
+        <p className="text-[#7D8592] text-sm md:text-base text-center md:text-left font-medium ">
+          Revenue by Payment Method
+        </p>
       </div>
       <div className="mb-5">
         <CustomActiveShapePieChart />
       </div>
-      <div className="grid grid-cols-2 gap-y-4 gap-x-10 ">
+      <div className="grid  grid-cols-1 md:grid-cols-2 gap-y-4 gap-x-10 ">
         <ChartLegenedInfo
           amount={21100.45}
           color="#FF8901"
@@ -108,7 +110,14 @@ const renderActiveShape = (props: any) => {
 
   return (
     <g>
-      <text x={cx} y={cy} dy={8} textAnchor="middle" fill={fill}>
+      <text
+        x={cx}
+        y={cy}
+        dy={8}
+        textAnchor="middle"
+        fill={fill}
+        className="text-xs md:text-sm"
+      >
         {payload.name}
       </text>
       <Sector
@@ -136,6 +145,7 @@ const renderActiveShape = (props: any) => {
       />
       <circle cx={ex} cy={ey} r={2} fill={fill} stroke="none" />
       <text
+        className="text-xs md:text-sm"
         x={ex + (cos >= 0 ? 1 : -1) * 12}
         y={ey}
         textAnchor={textAnchor}
@@ -147,8 +157,9 @@ const renderActiveShape = (props: any) => {
         dy={18}
         textAnchor={textAnchor}
         fill="#999"
+        className="text-xs md:text-sm"
       >
-        {`(Rate ${(percent * 100).toFixed(2)}%)`}
+        {`(${(percent * 100).toFixed(2)}%)`}
       </text>
     </g>
   );
@@ -162,22 +173,44 @@ const CustomActiveShapePieChart: React.FC = () => {
   };
 
   return (
-    <ResponsiveContainer width="100%" height={300}>
-      <PieChart>
-        <Pie
-          activeIndex={activeIndex}
-          activeShape={renderActiveShape}
-          data={data}
-          cx="50%"
-          cy="50%"
-          innerRadius={70}
-          outerRadius={90}
-          fill="#8884d8"
-          dataKey="value"
-          onMouseEnter={onPieEnter}
-        />
-      </PieChart>
-    </ResponsiveContainer>
+    <>
+      <div className="hidden md:block">
+        <ResponsiveContainer width="100%" height={300}>
+          <PieChart>
+            <Pie
+              activeIndex={activeIndex}
+              activeShape={renderActiveShape}
+              data={data}
+              cx="50%"
+              cy="50%"
+              innerRadius={70}
+              outerRadius={90}
+              fill="#8884d8"
+              dataKey="value"
+              onMouseEnter={onPieEnter}
+            />
+          </PieChart>
+        </ResponsiveContainer>
+      </div>
+      <div className="md:hidden">
+        <ResponsiveContainer width="100%" height={300}>
+          <PieChart>
+            <Pie
+              activeIndex={activeIndex}
+              activeShape={renderActiveShape}
+              data={data}
+              cx="50%"
+              cy="50%"
+              innerRadius={50}
+              outerRadius={70}
+              fill="#8884d8"
+              dataKey="value"
+              onMouseEnter={onPieEnter}
+            />
+          </PieChart>
+        </ResponsiveContainer>
+      </div>
+    </>
   );
 };
 

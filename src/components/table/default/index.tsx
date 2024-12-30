@@ -59,7 +59,7 @@ export const DefaultTable = <T,>({
                 {headerGroup.headers.map((header) => (
                   <th
                     key={header.id}
-                    className="pr-[2rem] border-b border-[#E7F8FA]  py-5 first:pl-5 capitalize whitespace-nowrap text-[#7D8592] text-sm font-normal"
+                    className="pr-[2rem] border-b border-[#E7F8FA]  py-5 first:pl-5 capitalize whitespace-nowrap text-[#7D8592] text-xs md:text-sm font-normal"
                   >
                     {header.isPlaceholder
                       ? null
@@ -81,7 +81,7 @@ export const DefaultTable = <T,>({
                 {row.getVisibleCells().map((cell) => (
                   <td
                     key={cell.id}
-                    className="py-5 first:pl-5   last:pr-9 last:rounded-tr-[0.625rem]  px-1    text-left whitespace-nowrap    pr-[2rem] text-sm text-[#606060] "
+                    className="py-5 first:pl-5   last:pr-9 last:rounded-tr-[0.625rem]  px-1    text-left whitespace-nowrap    pr-[2rem] text-xs md:text-sm text-[#606060] "
                   >
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </td>

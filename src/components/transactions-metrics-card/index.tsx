@@ -16,8 +16,13 @@ interface DashboardMetricType {
 
 const DashboardMetricData: React.FC<DashboardMetricType> = (props) => {
   return (
-    <div className="col-span-4 border-l border-[#FFFFFF] border-opacity-40 pl-8">
-      <div className={clsx("flex  gap-x-10 mb-2")}>
+    <div className="md:col-span-4 md:border-l border-[#FFFFFF] border-opacity-40 md:pl-8">
+      <div className="md:hidden flex justify-end pb-3">
+        <div className="w-[45%] bg-[#FFFFFF] h-[1px] bg-opacity-40 " />
+      </div>
+      <div
+        className={clsx("flex justify-between md:justify-start  gap-x-10 mb-2")}
+      >
         <div
           className={clsx(
             "h-[2.856rem] w-[2.856rem] flex items-center justify-center rounded-full ",
@@ -27,14 +32,16 @@ const DashboardMetricData: React.FC<DashboardMetricType> = (props) => {
           {props.icon}
         </div>
         <div className="">
-          <p className="text-sm text-[#FFFFFF80] mb-4">{props.title}</p>
-          <h2 className="text-white font-bold text-2xl">
+          <p className="text-xs md:text-sm text-[#FFFFFF80] mb-2 md:mb-4">
+            {props.title}
+          </p>
+          <h2 className="text-white font-bold text-lg md:text-2xl">
             {formatCurrency(props.metric, props.currency)}
           </h2>
         </div>
       </div>
       <div className="">
-        <p className="flex items-center gap-x-1 text-sm text-[#FFFFFF80]">
+        <p className="flex justify-end md:justify-start text-xs items-center gap-x-1 md:text-sm text-[#FFFFFF80]">
           <span>
             {props.percentage > 0 ? (
               <TrendingUpIcon scale={0.8} />
@@ -64,10 +71,14 @@ export const TransactionMetricsCard: React.FC<{
   description: string;
 }> = (props) => {
   return (
-    <div className="bg-[#122A2C] rounded-[0.938rem] py-[1.938rem] px-[4.563rem] grid grid-cols-12 gap-x-10">
-      <div className="col-span-4 px-8">
-        <h2 className="font-bold text-white text-3xl mb-2">{props.title}</h2>
-        <p className="text-base text-[#FFFFFF80]">{props.description}</p>
+    <div className="bg-[#122A2C] rounded-[0.938rem] py-[1.938rem] px-[2rem] md:px-[4.563rem] grid gap-y-10  grid-cols-1 md:grid-cols-12 gap-x-10">
+      <div className="md:col-span-4 flex flex-col items-end md:items-start  md:justify-start text-right md:text-left  ">
+        <h2 className="font-bold text-white text-xl md:text-3xl mb-2">
+          {props.title}
+        </h2>
+        <p className="text-xs md:text-base  max-w-xs md:max-w-fit   text-[#FFFFFF80]">
+          {props.description}
+        </p>
       </div>
       {data.map((item, idx) => (
         <DashboardMetricData {...item} key={idx} idx={idx} />

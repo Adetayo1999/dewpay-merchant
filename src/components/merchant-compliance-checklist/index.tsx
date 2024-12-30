@@ -15,7 +15,7 @@ export const MerchantComplianceChecklist = () => {
   return (
     <div className="">
       <table className="w-full border-separate border-spacing-y-4">
-        <thead>
+        <thead className="hidden md:table-header-group ">
           <tr>
             <th className="pb-[0.6rem] px-4 text-left"></th>
             <th className=" pb-[0.6rem] text-sm px-4 text-left font-semibold text-[#7D8592]">
@@ -26,19 +26,19 @@ export const MerchantComplianceChecklist = () => {
             </th>
           </tr>
         </thead>
-        <tbody className="w-full">
+        <tbody className="md:w-full">
           {data.map((item, index) => (
             <tr key={index} className="">
               <td className="py-[1rem]  first:rounded-bl-lg first:rounded-tl-lg border-[#D1D1D1] first:border-l last:pr-9 last:rounded-tr-lg last:rounded-br-lg last:border-r pl-8 border-y border-opacity-60">
                 <CustomCheckbox state={true} />
               </td>
-              <td className=" py-[1rem] w-full  first:rounded-bl-lg first:rounded-tl-lg border-[#D1D1D1] first:border-l last:pr-9 last:rounded-tr-lg last:rounded-br-lg last:border-r pl-4  text-sm text-[#7D8592]   border-y border-opacity-60">
+              <td className=" py-[1rem] w-full  first:rounded-bl-lg first:rounded-tl-lg border-[#D1D1D1] first:border-l last:pr-9 last:rounded-tr-lg last:rounded-br-lg last:border-r pl-4 text-xs  md:text-sm text-[#7D8592]   border-y border-opacity-60">
                 {item.title}
               </td>
-              <td className="min-w-[15rem] py-[1rem]  first:rounded-bl-lg first:rounded-tl-lg border-[#D1D1D1] first:border-l last:pr-9 last:rounded-tr-lg last:rounded-br-lg last:border-r pl-4   border-y border-opacity-60">
+              <td className="md:min-w-[15rem] py-[1rem]  first:rounded-bl-lg first:rounded-tl-lg border-[#D1D1D1] first:border-l last:pr-9 last:rounded-tr-lg last:rounded-br-lg last:border-r pl-4   border-y border-opacity-60">
                 <button
                   className={clsx(
-                    "text-sm flex items-center gap-x-3 capitalize",
+                    "text-xs md:text-sm flex items-center gap-x-3 capitalize",
                     statusStyles[item.status]
                   )}
                 >

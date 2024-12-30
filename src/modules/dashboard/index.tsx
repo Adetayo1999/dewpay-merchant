@@ -8,7 +8,7 @@ export default function DashboardPage() {
     <div className="flex flex-col gap-y-6">
       <DashboardMetricsCard />
       <DashboardCompletedSalesChart />
-      <div className="grid grid-cols-12 gap-x-5">
+      <div className="flex flex-col  md:px-0 gap-y-8 md:grid grid-cols-12 gap-x-5">
         <DashboardRevenueByPaymentMetric />
         <DashboardCodeUsageMetrics />
       </div>

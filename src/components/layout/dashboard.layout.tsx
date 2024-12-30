@@ -8,9 +8,9 @@ export const DashboardLayout = () => {
     <ModalProvider>
       <div className="">
         <Header />
-        <div className="py-[3rem] px-[5.875rem]">
-          <div className="mb-5">
-            <p className="flex gap-x-2 items-center mb-2">
+        <div className="py-[2.5rem] md:py-[3rem] px-[1.375rem] md:px-[5.875rem]">
+          <div className="mb-5 text-center md:text-left">
+            <p className="inline-flex  gap-x-2 items-center mb-2">
               <span>
                 <svg
                   width="16"
@@ -49,14 +49,14 @@ export const DashboardLayout = () => {
                   />
                 </svg>
               </span>
-              <span className="text-sm text-[#7D8592] font-medium">
+              <span className="text-xs md:text-sm text-[#7D8592] font-medium">
                 Friday, Oct 25 2022.
               </span>
             </p>
             <h2 className="font-bold text-[#7D8592] text-2xl">Good evening</h2>
           </div>
-          <div className="grid grid-cols-12 gap-x-6">
-            <div className="col-span-2 ">
+          <div className="md:grid grid-cols-12 gap-x-6 ">
+            <div className="col-span-2 mb-5 md:mb-0 hidden md:block">
               <Sidebar />
             </div>
             <div className="col-span-10">

@@ -15,7 +15,9 @@ export default function UsersInformation() {
           <span className="rotate-180">
             <ArrowRightIcon scale={0.8} />
           </span>
-          <span className="text-sm text-[#606060] font-bold">Back</span>
+          <span className="text-xs md:text-sm text-[#606060] font-bold">
+            Back
+          </span>
         </Link>
       </div>
       <UserInformationCard />

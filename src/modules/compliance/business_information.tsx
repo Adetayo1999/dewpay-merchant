@@ -102,15 +102,15 @@ export default function BusinessInformation() {
       <div className="">
         {businessInformationData.map((item, idx) => (
           <div
-            className="flex justify-between  py-5 border-t border-[#2022240D]"
+            className="flex flex-col gap-y-2 md:flex-row justify-between  py-5 border-t border-[#2022240D]"
             key={idx}
           >
-            <p className="text-sm text-[#7D8592]">{item.title}</p>
+            <p className="text-xs md:text-sm text-[#7D8592]">{item.title}</p>
             <div
-              className="flex gap-x-4 items-center hover:bg-slate-50 rounded py-2 px-4 cursor-pointer"
+              className="flex gap-x-4 items-center justify-between md:justify-start hover:bg-slate-50 rounded py-2 md:px-4 cursor-pointer"
               onClick={item.onClick}
             >
-              <p className="max-w-[17.625rem] text-sm text-[#20222466]">
+              <p className="max-w-[17.625rem] text-xs md:text-sm text-[#20222466]">
                 {item.value}
               </p>
               <button>

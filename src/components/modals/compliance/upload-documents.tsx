@@ -39,18 +39,18 @@ const UploadedFileComponent: React.FC<{
   }, []);
 
   return (
-    <div className="border border-[#E4E9F0] text-xs text-[#202224] rounded-md p-3">
+    <div className="border border-[#E4E9F0] text-xs text-[#202224] rounded-md p-3 overflow-hidden">
       <div className="mb-3 flex justify-between items-center">
-        <div className="flex gap-x-3 flex-1">
+        <div className="flex-[0.6] flex gap-x-3 md:flex-1  ">
           <div className="h-10 w-10 flex-shrink-0 bg-gray-100 rounded"></div>
           <div className="flex-1">
-            <p className="w-[70%] truncate mb-1 font-medium">
+            <p className="max-w-[10rem] md:w-[70%] truncate mb-1 font-medium">
               {props.file.name}
             </p>
             <p className="text-[#969DB2] ">{convertToMB(props.file.size)}MB</p>
           </div>
         </div>
-        <div className="flex-shrink-0">
+        <div className="flex flex-shrink-0">
           {isUploading && (
             <div className="flex items-center gap-x-3">
               <button className="bg-[#F5F7F9] w-6 h-6 rounded-full flex items-center justify-center text-[#667384]">
@@ -99,7 +99,7 @@ export const ComplianceUploadDocumentsModal = () => {
 
   return (
     <ModalContainer>
-      <div className="px-8 mb-10">
+      <div className="px-6 md:px-8 mb-10">
         <div className="">
           <label
             htmlFor="compliance_document_uploader"

@@ -21,7 +21,7 @@ export const CustomSelect: React.FC<CustomSelectProps> = React.forwardRef(
           <div className="relative">
             <select
               className={clsx(
-                "text-sm placeholder:text-[#7D8592] border border-[#D8E0F0] rounded-lg px-4 py-3 h-[3rem] md:h-[3.5rem] bg-transparent w-full",
+                "text-sm placeholder:text-[#7D8592] border border-[#D8E0F0] rounded-lg px-4 py-3 h-[3rem] md:h-[3.5rem] bg-white md:bg-transparent w-full",
                 "focus:ring-2 focus:ring-primary focus:ring-opacity-40 outline-none transition-all duration-200",
                 className
               )}

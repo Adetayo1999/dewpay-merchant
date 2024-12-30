@@ -10,9 +10,9 @@ export const NotificationPreference = () => {
   const { setModalContent } = useModal();
 
   return (
-    <div className="shadow-[0px_0px_23px_0px_#0000001A] bg-white min-h-[40rem] rounded-[0.938rem]  py-[1.563rem] px-[5.254rem]">
-      <div className="mb-6">
-        <h1 className="text-lg text-[#7D8592] font-semibold">
+    <div className="shadow-[0px_0px_23px_0px_#0000001A] bg-white min-h-[20rem] md:min-h-[40rem] rounded-[0.938rem]  py-[1.563rem] px-[2rem] md:px-[5.254rem]">
+      <div className="mb-10 md:mb-6">
+        <h1 className="text-base md:text-lg text-[#7D8592] font-semibold">
           Notification Preference
         </h1>
       </div>
@@ -44,7 +44,7 @@ const NotificationComponent: React.FC<{
   const [state, setState] = useState(false);
 
   return (
-    <div className="flex flex-col gap-y-6 text-sm text-[#7D8592] border-b border-[#2022240D] pb-5 last:border-none">
+    <div className="flex flex-col gap-y-6 text-xs md:text-sm text-[#7D8592] border-b border-[#2022240D] pb-5 last:border-none">
       <div className="flex justify-between items-center">
         <p className="">{props.title}</p>
         <CustomToggle onChange={(s) => setState(s)} />

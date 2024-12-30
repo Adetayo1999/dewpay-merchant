@@ -8,7 +8,7 @@ interface CustomerSupportChatListCardProps {
 
 export const CustomerSupportChats = () => {
   return (
-    <div className=" overflow-hidden grid grid-cols-12 gap-x-2">
+    <div className=" overflow-hidden grid grid-cols-1 gap-y-10 md:grid-cols-12 gap-x-2">
       <CustomerSupportChatList />
       <CustomerSupportSelectedChat />
     </div>
@@ -28,7 +28,7 @@ const CustomerSupportChatListCard: React.FC<
       <div className="">
         <h3
           className={clsx(
-            "text-base mb-1",
+            "text-sm md:text-base mb-1",
             props.sent ? " text-[#797D8C]   " : "font-bold text-[#202224]"
           )}
         >
@@ -101,7 +101,7 @@ const CustomerSupportChatListCard: React.FC<
 
 const CustomerSupportChatList = () => {
   return (
-    <div className="col-span-4  border border-[#E4E6E8] rounded-lg h-[48.188rem] ">
+    <div className="md:col-span-4  border border-[#E4E6E8] rounded-lg h-[48.188rem] ">
       <div className="border-[#E4E6E8] border-b p-3 pt-5 mb-5">
         <div className="relative">
           <input
@@ -163,7 +163,7 @@ const CustomerSupportChatList = () => {
         />
       </div>
       <div className="px-3 mt-3">
-        <button className="text-primary font-bold text-sm px-4 py-2 rounded hover:bg-primary hover:bg-opacity-5">
+        <button className="text-primary font-bold text-xs md:text-sm px-4 py-2 rounded hover:bg-primary hover:bg-opacity-5">
           + New Message
         </button>
       </div>
@@ -173,16 +173,18 @@ const CustomerSupportChatList = () => {
 
 const CustomerSupportSelectedChat = () => {
   return (
-    <div className="col-span-8  flex flex-col h-[48.188rem]">
+    <div className="md:col-span-8  flex flex-col h-[48.188rem]">
       <div className="flex items-center gap-x-5 py-2.5">
         <div className="w-[2rem] h-[2rem] bg-slate-100 rounded-full" />
         <div className="">
-          <h2 className="font-bold text-[#797D8C] text-xl">Charles Avis</h2>
+          <h2 className="font-bold text-[#797D8C]  text-lg md:text-xl">
+            Charles Avis
+          </h2>
           <p className="text-sm text-[#797D8C]">acharles@dewpay.com</p>
         </div>
       </div>
       <div className="flex-grow border border-[#E4E6E8] rounded-lg overflow-hidden   relative">
-        <div className="flex flex-col gap-y-5 p-4 pb-[5rem]  h-[44rem] overflow-y-auto ">
+        <div className="flex flex-col gap-y-6 md:gap-y-5 p-4 pb-[5rem]  h-[44rem] overflow-y-auto ">
           {messages.map((item, idx) => (
             <CustomerSupportMessageCard {...item} key={idx} />
           ))}
@@ -194,7 +196,7 @@ const CustomerSupportSelectedChat = () => {
             name=""
             id=""
             placeholder="Write message..."
-            className="h-full flex-1 border-none outline-none "
+            className="h-full text-sm md:text-base flex-1 border-none outline-none "
           />
           <div className="flex-shrink-0 flex gap-x-5 items-center">
             <button>
@@ -225,8 +227,8 @@ const CustomerSupportSelectedChat = () => {
                 />
               </svg>
             </button>
-            <button className="bg-primary flex items-center min-w-32 gap-x-2 text-sm text-white rounded-md justify-center py-2.5 font-semibold ">
-              <span>Send</span>
+            <button className="bg-primary flex items-center md:min-w-32 px-2.5 md:px-0 gap-x-2 text-sm text-white rounded-md justify-center py-2.5 font-semibold ">
+              <span className="hidden md:block"> Send</span>
               <span>
                 <svg
                   width="13"
@@ -267,7 +269,7 @@ const CustomerSupportMessageCard: React.FC<{
         )}
         <div
           className={clsx(
-            "w-fit max-w-[25rem] p-4 text-sm rounded-[0.938rem]",
+            "w-fit max-w-[25rem] p-4 text-xs md:text-sm rounded-[0.938rem]",
             props.sender
               ? "bg-[#F5F5F5] rounded-bl-none"
               : "bg-primary rounded-br-none"
@@ -284,7 +286,7 @@ const CustomerSupportMessageCard: React.FC<{
           <div className="flex justify-end items-center">
             <span
               className={clsx(
-                "text-xs",
+                "text-[0.625rem] md:text-xs",
                 props.sender ? "text-[#757575]" : "text-white"
               )}
             >

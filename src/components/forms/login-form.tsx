@@ -2,7 +2,7 @@ import { CustomButton } from "@components/form-elements/button";
 import { AuthCustomInput } from "@components/form-elements/input";
 import { paths } from "@routes/paths";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 interface FormType {
   email: string;
@@ -16,8 +16,13 @@ export const LoginForm = () => {
     formState: { errors, isValid },
   } = useForm<FormType>();
 
+  const navigate = useNavigate();
+
   return (
-    <form className="flex flex-col gap-y-4" onSubmit={handleSubmit(() => {})}>
+    <form
+      className="flex flex-col gap-y-4 "
+      onSubmit={handleSubmit(() => navigate(paths.dashboard.index))}
+    >
       <AuthCustomInput
         label="Email Address"
         placeholder="youremail@gmail.com"
@@ -32,15 +37,15 @@ export const LoginForm = () => {
         {...register("password", { required: true })}
         error={errors.password}
       />
-      <div className="flex  gap-y-5 flex-col justify-center items-center">
+      <div className="flex  mt-5 md:mt-0 gap-y-5 flex-col justify-center items-center">
         <CustomButton
-          variant="primary"
+          variant="auth"
           disabled={!isValid}
-          className="w-full rounded-lg p-4  font-medium"
+          className="w-full rounded-lg text-sm md:text-base  p-3 md:p-4  font-medium "
         >
           Sign In
         </CustomButton>
-        <div className="flex justify-center gap-x-8 items-center w-full">
+        <div className="flex justify-center flex-wrap gap-8 items-center w-full">
           {[
             { title: "Forgot Password", path: paths.auth.forgot_password },
             { title: "Create Account", path: paths.auth.register },
@@ -49,7 +54,7 @@ export const LoginForm = () => {
             <Link
               to={item.path}
               key={idx}
-              className="text-sm text-primary  hover:underline "
+              className="text-xs md:text-sm text-white md:text-primary  hover:underline "
             >
               {item.title}
             </Link>

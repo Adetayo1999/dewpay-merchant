@@ -38,7 +38,7 @@ export const CustomDropdown: React.FC<CustomDropdownProps> = ({
       {/* Dropdown Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex justify-between items-center w-full px-4 py-2 bg-white border  rounded-md h-[3.5rem] focus:ring-2 focus:ring-primary focus:ring-opacity-40 outline-none transition-all duration-200"
+        className="flex justify-between items-center w-full px-4 py-2 bg-white border  rounded-md h-[3rem] md:h-[3.5rem] focus:ring-2 focus:ring-primary focus:ring-opacity-40 outline-none transition-all duration-200"
       >
         <span className="text-[#7D8592] text-xs font-medium capitalize">
           {selected.value}

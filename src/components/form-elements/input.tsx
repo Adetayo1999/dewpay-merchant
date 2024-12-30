@@ -31,8 +31,8 @@ export const AuthCustomInput: React.FC<CustomInputProps> = React.forwardRef(
           <div className="relative">
             <input
               className={clsx(
-                "text-sm placeholder:text-[#7D8592] border border-[#D8E0F0] rounded-lg px-4 py-3 h-[3rem] md:h-[3.5rem] bg-transparent w-full",
-                "focus:ring-2 focus:ring-primary focus:ring-opacity-40 outline-none transition-all duration-200",
+                "text-sm placeholder:text-[#7D8592] border border-[#D8E0F0] rounded-lg px-4 py-3 h-[3rem] md:h-[3.5rem] bg-white md:bg-transparent w-full",
+                "focus:ring-2 md:focus:ring-primary focus:ring-white focus:ring-opacity-40 outline-none transition-all duration-200",
                 type === "password" ? "pr-8" : "",
                 className
               )}
@@ -89,7 +89,7 @@ export const ModalInput: React.FC<CustomInputProps> = React.forwardRef(
           <div className="relative">
             <input
               className={clsx(
-                "text-sm placeholder:text-[#ACACAC] border border-[#D1D1D1] rounded-lg px-4 py-3 h-[3rem]  bg-transparent w-full",
+                "text-xs md:text-sm placeholder:text-[#ACACAC] border border-[#D1D1D1] rounded-lg px-4 py-3 h-[3rem]  bg-transparent w-full",
                 "focus:ring-2 focus:ring-primary focus:ring-opacity-40 outline-none transition-all duration-200",
                 type === "password" ? "pr-8" : "",
                 className

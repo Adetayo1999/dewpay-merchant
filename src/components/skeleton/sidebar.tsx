@@ -14,7 +14,7 @@ import { paths } from "@routes/paths";
 import clsx from "clsx";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
-interface MenuItemType {
+export interface MenuItemType {
   name: string;
   icon: JSX.Element;
   path: string;
@@ -23,6 +23,7 @@ interface MenuItemType {
     name: string;
     path: string;
   }[];
+  onClick?: VoidFunction;
 }
 
 export const Sidebar = () => {
@@ -68,10 +69,10 @@ export const Sidebar = () => {
           name: "Collections",
           path: paths.ussd_collect.collections,
         },
-        {
-          name: "Settings",
-          path: paths.ussd_collect.settings,
-        },
+        // {
+        //   name: "Settings",
+        //   path: paths.ussd_collect.settings,
+        // },
       ],
     },
     {
@@ -140,17 +141,18 @@ export const Sidebar = () => {
   );
 };
 
-const MenuItem: React.FC<MenuItemType> = ({
+export const MenuItem: React.FC<MenuItemType> = ({
   icon,
   isActive,
   name,
   path,
   children,
+  onClick,
 }) => {
   const pathname = useLocation().pathname;
 
   return (
-    <li className="text-sm">
+    <li className="text-xs md:text-sm" onClick={onClick}>
       <Link
         to={path}
         className={clsx(
@@ -160,7 +162,7 @@ const MenuItem: React.FC<MenuItemType> = ({
       >
         <div className="flex items-center gap-x-4">
           <span>{icon}</span>
-          <span>{name}</span>
+          <span className="">{name}</span>
         </div>
         {children && (
           <span
