@@ -2,7 +2,7 @@ import { CustomButton } from "@components/form-elements/button";
 import { AuthCustomInput } from "@components/form-elements/input";
 import { paths } from "@routes/paths";
 import { useForm } from "react-hook-form";
-import { Link, useNavigate, useSearchParams } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import {
   useLoginMutation,
   useRegisterMutation,
@@ -21,24 +21,22 @@ interface FormType {
   otp_code: string;
 }
 
+interface OTPLocationState {
+  flow: "login" | "register" | "forgot-password";
+  email: string;
+  password?: string;
+  first_name?: string;
+  last_name?: string;
+  bvn?: string;
+  new_password?: string;
+}
+
 export const OTPForm = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const [searchParams] = useSearchParams();
+  const location = useLocation();
 
-  // Get auth flow type and data from URL params
-  const flow = searchParams.get("flow") as
-    | "login"
-    | "register"
-    | "forgot-password";
-  const email = searchParams.get("email");
-  const password = searchParams.get("password");
-  const first_name = searchParams.get("first_name");
-  const last_name = searchParams.get("last_name");
-  const bvn = searchParams.get("bvn");
-  const new_password = searchParams.get("new_password");
-
-  // RTK Query hooks
+  // RTK Query hooks (must be called before any conditional returns)
   const [login, { isLoading: isLoginLoading }] = useLoginMutation();
   const [registerMutation, { isLoading: isRegisterLoading }] =
     useRegisterMutation();
@@ -51,6 +49,18 @@ export const OTPForm = () => {
     formState: { errors, isValid },
     setError,
   } = useForm<FormType>();
+
+  // Get auth flow type and data from location state
+  const state = location.state as OTPLocationState | null;
+
+  // Redirect to login if no state is present
+  if (!state) {
+    navigate(paths.auth.login);
+    return null;
+  }
+
+  const { flow, email, password, first_name, last_name, bvn, new_password } =
+    state;
 
   const isLoading =
     isLoginLoading || isRegisterLoading || isForgotPasswordLoading;

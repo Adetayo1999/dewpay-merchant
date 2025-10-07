@@ -49,14 +49,14 @@ export const LoginForm = () => {
         })
       );
 
-      // Redirect to OTP page with form data
-      const params = new URLSearchParams({
-        flow: "login",
-        email: email,
-        password: password,
+      // Redirect to OTP page with form data in location state
+      navigate(paths.auth.otp, {
+        state: {
+          flow: "login",
+          email: email,
+          password: password,
+        },
       });
-
-      navigate(`${paths.auth.otp}?${params.toString()}`);
     } catch (error: unknown) {
       showApiErrorToast(error);
     }

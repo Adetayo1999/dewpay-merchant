@@ -54,17 +54,17 @@ export const RegisterForm = () => {
         })
       );
 
-      // Redirect to OTP page with form data
-      const params = new URLSearchParams({
-        flow: "register",
-        email: email,
-        password: password,
-        first_name: first_name,
-        last_name: last_name,
-        bvn: bvn,
+      // Redirect to OTP page with form data in location state
+      navigate(paths.auth.otp, {
+        state: {
+          flow: "register",
+          email: email,
+          password: password,
+          first_name: first_name,
+          last_name: last_name,
+          bvn: bvn,
+        },
       });
-
-      navigate(`${paths.auth.otp}?${params.toString()}`);
     } catch (error: unknown) {
       const errorData = error as { data?: { message?: string } };
       const errorMessage =

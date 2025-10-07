@@ -46,13 +46,12 @@ export const ForgotPasswordForm = () => {
         })
       );
 
-      // Redirect to OTP page with form data
-      const params = new URLSearchParams({
-        flow: "forgot-password",
-        email: email,
+      // Redirect to reset password page with email in state
+      navigate(paths.auth.reset_password, {
+        state: {
+          email: email,
+        },
       });
-
-      navigate(`${paths.auth.otp}?${params.toString()}`);
     } catch (error: unknown) {
       const errorData = error as { data?: { message?: string } };
       const errorMessage =
