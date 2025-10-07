@@ -239,7 +239,7 @@ export const NewPaymentLinkModal = ({
             success_message: data.success_message,
             logo_url: images.logo.cloudinaryUrl || "",
             banner_url: images.banner.cloudinaryUrl || "",
-            status: true, // Default to active
+            status: "active", // Default to active
           };
 
           await createPaymentLink(payload).unwrap();

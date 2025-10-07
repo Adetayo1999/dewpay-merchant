@@ -30,8 +30,7 @@ export const HeaderActions = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
-  const [changeMerchantMode, { isLoading: isChangingMode }] =
-    useChangeMerchantModeMutation();
+  const [changeMerchantMode] = useChangeMerchantModeMutation();
   const [logoutApi] = useLogoutMutation();
 
   const [state, setState] = useState<HeaderActionsState>({

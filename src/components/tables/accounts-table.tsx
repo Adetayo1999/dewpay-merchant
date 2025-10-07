@@ -23,6 +23,8 @@ interface AccountRow {
   balance: number;
   reference: string;
   created_at: string;
+  merchant_id: string;
+  status: string;
   isUserAccount?: boolean;
 }
 
@@ -74,6 +76,8 @@ export const AccountsTable = ({
       balance: account.balance,
       reference: account.reference,
       created_at: account.created_at,
+      merchant_id: account.merchant_id,
+      status: account.status,
       isUserAccount: isUserAccount(account, userAccountNumber),
     }));
   }, [filteredData, isUserAccount, userAccountNumber]);
@@ -250,6 +254,8 @@ export const AccountsTable = ({
                 phone: "",
                 email: props.row.original.email,
                 created_at: props.row.original.created_at,
+                merchant_id: props.row.original.merchant_id,
+                status: props.row.original.status as "active" | "inactive",
               })
             }
             className="text-gray-600 hover:text-gray-800 p-1"

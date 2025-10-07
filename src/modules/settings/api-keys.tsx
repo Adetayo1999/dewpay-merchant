@@ -54,7 +54,7 @@ export default function ApiKeys() {
     }
   }, [apiKey]);
 
-  const onSubmit = useCallback(async (data: ApiKeysForm) => {
+  const onSubmit = useCallback(async (_data: ApiKeysForm) => {
     setIsUpdatingWebhook(true);
     try {
       // Simulate API call - replace with actual API endpoint

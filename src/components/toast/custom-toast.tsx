@@ -13,7 +13,6 @@ export const CustomToast: React.FC<CustomToastProps> = ({
   message,
 }) => {
   const isError = type === "error";
-  const isSuccess = type === "success";
 
   return (
     <div
