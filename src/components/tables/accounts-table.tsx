@@ -26,6 +26,7 @@ interface AccountRow {
   merchant_id: string;
   status: string;
   isUserAccount?: boolean;
+  originalAccount: ReservedAccount; // Store original account for modal
 }
 
 export const AccountsTable = ({
@@ -73,12 +74,16 @@ export const AccountsTable = ({
       account_number: account.account_number,
       bank_name: account.bank_name,
       email: account.email,
-      balance: account.balance,
+      balance:
+        typeof account.balance === "string"
+          ? parseFloat(account.balance)
+          : account.balance,
       reference: account.reference,
       created_at: account.created_at,
-      merchant_id: account.merchant_id,
-      status: account.status,
+      merchant_id: account.merchant_id || "",
+      status: account.status || "active",
       isUserAccount: isUserAccount(account, userAccountNumber),
+      originalAccount: account, // Store full account object
     }));
   }, [filteredData, isUserAccount, userAccountNumber]);
 
@@ -242,22 +247,7 @@ export const AccountsTable = ({
             </svg>
           </button>
           <button
-            onClick={() =>
-              onSetPin({
-                bank_code: "",
-                bank_name: props.row.original.bank_name,
-                account_name: props.row.original.account_name,
-                account_number: props.row.original.account_number,
-                balance: props.row.original.balance,
-                reference: props.row.original.reference,
-                account_id: props.row.original.id,
-                phone: "",
-                email: props.row.original.email,
-                created_at: props.row.original.created_at,
-                merchant_id: props.row.original.merchant_id,
-                status: props.row.original.status as "active" | "inactive",
-              })
-            }
+            onClick={() => onSetPin(props.row.original.originalAccount)}
             className="text-gray-600 hover:text-gray-800 p-1"
             title="Set PIN"
           >

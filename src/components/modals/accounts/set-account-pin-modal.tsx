@@ -47,6 +47,12 @@ export const SetAccountPinModal = ({
 
   const watchNewPin = watch("new_pin");
 
+  const handleClose = useCallback(() => {
+    setIsSettingPin(false);
+    reset();
+    onClose();
+  }, [onClose, reset]);
+
   const onSubmit = useCallback(
     async (data: SetPinForm) => {
       if (!account) return;
@@ -73,14 +79,8 @@ export const SetAccountPinModal = ({
         setIsSettingPin(false);
       }
     },
-    [account, setAccountPin, onSuccess]
+    [account, setAccountPin, onSuccess, handleClose]
   );
-
-  const handleClose = useCallback(() => {
-    setIsSettingPin(false);
-    reset();
-    onClose();
-  }, [onClose, reset]);
 
   if (!isOpen || !account) return null;
 

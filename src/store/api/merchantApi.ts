@@ -106,14 +106,7 @@ export interface MerchantBalance {
   };
 }
 
-export interface ReservedAccount {
-  account_number: string;
-  account_name: string;
-  bank_name: string;
-  merchant_id: string;
-  status: "active" | "inactive";
-  created_at: string;
-}
+// Duplicate removed - see ReservedAccount definition below
 
 export interface CreateAccountRequest {
   email: string;
@@ -309,17 +302,26 @@ export interface CheckoutResponse {
 
 // Reserved Accounts Types
 export interface ReservedAccount {
+  id?: number; // From list endpoint
   bank_code: string;
   bank_name: string;
   account_name: string;
   account_number: string;
-  balance: number;
+  balance: string;
   reference: string;
-  account_id: string;
+  account_id: string; // Required field from both endpoints
   phone: string;
   email: string;
-  full_name?: string;
   created_at: string;
+  // Fields from GetAccount endpoint only
+  wallet_id?: string;
+  wallet_token?: string;
+  wallet_pin?: string;
+  fos?: number;
+  // Additional optional fields
+  merchant_id?: string;
+  status?: "active" | "inactive";
+  full_name?: string;
 }
 
 export interface ReservedAccountsResponse {
@@ -340,7 +342,7 @@ export interface GetAccountRequest {
 
 export interface SetAccountPinRequest {
   merchant_id: string;
-  account_id: string;
+  account_id: string; // This should be the wallet_id from the account
   new_pin: string;
 }
 
