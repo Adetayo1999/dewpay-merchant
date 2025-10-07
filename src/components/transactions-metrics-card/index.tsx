@@ -80,9 +80,9 @@ export const TransactionMetricsCard: React.FC<{
           {props.description}
         </p>
       </div>
-      {data.map((item, idx) => (
+      {/* {data.map((item, idx) => (
         <DashboardMetricData {...item} key={idx} idx={idx} />
-      ))}
+      ))} */}
     </div>
   );
 };

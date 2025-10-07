@@ -2,28 +2,26 @@ import { useState } from "react";
 import { TablePagination } from "@components/table-pagination";
 import { DefaultTable } from "@components/table/default";
 import { createColumnHelper } from "@tanstack/react-table";
-import { useGetCustomerListQuery } from "../../store/api/merchantApi";
+import { CustomerListResponse, Customer } from "../../store/api/merchantApi";
 
-interface CustomerRow {
-  id: string;
-  name: string;
-  email: string;
-  phone: string;
-  customer_status: "active" | "inactive";
+interface CustomersTableProps {
+  data?: CustomerListResponse;
+  isLoading: boolean;
+  currentPage: number;
+  onPageChange: (page: number) => void;
+  limit: number;
 }
 
-export const CustomersTable = () => {
+export const CustomersTable = ({
+  data,
+  isLoading,
+  currentPage,
+  limit,
+}: CustomersTableProps) => {
   const [searchTerm, setSearchTerm] = useState("");
-  const [currentPage] = useState(1);
-  const limit = 10;
-
-  const { data, isLoading } = useGetCustomerListQuery({
-    offset: (currentPage - 1) * limit,
-    limit: limit.toString(),
-  });
 
   // Define table columns
-  const columnHelper = createColumnHelper<CustomerRow>();
+  const columnHelper = createColumnHelper<Customer>();
   const columns = [
     columnHelper.accessor("name", {
       header: "Name",
@@ -46,7 +44,7 @@ export const CustomersTable = () => {
     columnHelper.accessor("customer_status", {
       header: "Customer Status",
       cell: (props) => {
-        const status = props.getValue();
+        const status = props.getValue() || "inactive";
         const getStatusColor = (status: string) => {
           switch (status.toLowerCase()) {
             case "active":

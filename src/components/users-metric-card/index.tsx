@@ -1,13 +1,12 @@
 import { TrendingUpIcon } from "@assets/icons/trending-up-icon";
 import clsx from "clsx";
-import { useGetCustomerListQuery } from "../../store/api/merchantApi";
 
-export const UsersMetricCard = () => {
-  const { data: customerData, isLoading } = useGetCustomerListQuery({
-    offset: "0",
-    limit: "1", // We only need the total count, so limit to 1
-  });
+interface UsersMetricCardProps {
+  total: number;
+  isLoading: boolean;
+}
 
+export const UsersMetricCard = ({ total, isLoading }: UsersMetricCardProps) => {
   return (
     <div className="bg-[#122A2C] flex flex-col md:flex-row gap-y-10 justify-between  rounded-[0.938rem] py-[1.938rem]  px-[2rem] md:px-[4.563rem]">
       <div className="md:border-r border-[#FFFFFF] md:flex-[0.3] flex flex-col items-end md:items-start   md:justify-start text-right md:text-left">
@@ -51,7 +50,7 @@ export const UsersMetricCard = () => {
               Total Customers
             </p>
             <h2 className="text-white font-bold text-xl md:text-2xl ">
-              {isLoading ? "..." : customerData?.total || 0}
+              {isLoading ? "..." : total}
             </h2>
           </div>
         </div>
