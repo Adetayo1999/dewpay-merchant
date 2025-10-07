@@ -18,6 +18,16 @@ export const SettingsLayout = () => {
       path: paths.settings.team_management,
       isActive: pathname === paths.settings.team_management,
     },
+    {
+      title: "Security",
+      path: paths.settings.security,
+      isActive: pathname === paths.settings.security,
+    },
+    {
+      title: "API Keys",
+      path: paths.settings.api_keys,
+      isActive: pathname === paths.settings.api_keys,
+    },
   ];
 
   return (

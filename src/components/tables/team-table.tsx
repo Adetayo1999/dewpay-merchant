@@ -60,7 +60,7 @@ export const TeamsTable = () => {
         columns={columns}
         className="min-h-[30rem] md:min-h-[45rem]"
       />
-      <TablePagination page={1} total={100} />
+      {data.length > 0 && <TablePagination page={1} total={100} />}
     </div>
   );
 };

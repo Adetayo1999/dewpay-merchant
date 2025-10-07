@@ -28,7 +28,7 @@ export const UserInformationTable = () => {
   return (
     <div className="flex flex-col gap-y-4">
       <DefaultTable data={data} columns={columns} />
-      <TablePagination page={4} total={100} />
+      {data.length > 0 && <TablePagination page={4} total={100} />}
     </div>
   );
 };

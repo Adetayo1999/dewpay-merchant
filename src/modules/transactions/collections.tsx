@@ -1,4 +1,4 @@
-import { TransactionCollectionsTable } from "@components/tables/transaction-collections-table";
+import { CollectionsTable } from "@components/tables/collections-table";
 import { TransactionMetricsCard } from "@components/transactions-metrics-card";
 
 export default function TransactionCollections() {
@@ -8,7 +8,7 @@ export default function TransactionCollections() {
         title="Collections"
         description="Total amount of funds collected through USSD and payment links "
       />
-      <TransactionCollectionsTable />
+      <CollectionsTable />
     </div>
   );
 }

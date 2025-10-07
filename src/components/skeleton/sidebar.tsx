@@ -9,6 +9,8 @@ import {
   UsersIcon,
   USSDCollectIcon,
   WalletIcon,
+  AccountIcon,
+  StatementsIcon,
 } from "@assets/icons";
 import { paths } from "@routes/paths";
 import clsx from "clsx";
@@ -59,44 +61,74 @@ export const Sidebar = () => {
         },
       ],
     },
+    // {
+    //   name: "USSD Collect",
+    //   icon: <USSDCollectIcon />,
+    //   path: paths.ussd_collect.index,
+    //   isActive: pathname.includes(paths.ussd_collect.index),
+    //   children: [
+    //     {
+    //       name: "Collections",
+    //       path: paths.ussd_collect.collections,
+    //     },
+    //     // {
+    //     //   name: "Settings",
+    //     //   path: paths.ussd_collect.settings,
+    //     // },
+    //   ],
+    // },
     {
-      name: "USSD Collect",
-      icon: <USSDCollectIcon />,
-      path: paths.ussd_collect.index,
-      isActive: pathname.includes(paths.ussd_collect.index),
-      children: [
-        {
-          name: "Collections",
-          path: paths.ussd_collect.collections,
-        },
-        // {
-        //   name: "Settings",
-        //   path: paths.ussd_collect.settings,
-        // },
-      ],
-    },
-    {
-      name: "Users",
+      name: "Customers",
       icon: <UsersIcon />,
       path: paths.users.index,
       isActive: pathname.includes(paths.users.index),
     },
     {
-      name: "Services",
-      icon: <ServicesIcon />,
-      path: paths.services.index,
-      isActive: pathname.includes(paths.services.index),
-      children: [
-        {
-          name: "Local Services",
-          path: paths.services.local_services,
-        },
-        {
-          name: "Global Services",
-          path: paths.services.global_services,
-        },
-      ],
+      name: "Cashbinding",
+      icon: <USSDCollectIcon />, // Using USSD icon as placeholder
+      path: paths.cashbinding.index,
+      isActive: pathname.includes(paths.cashbinding.index),
     },
+    {
+      name: "Payouts",
+      icon: <TransactionIcon />,
+      path: paths.payouts.index,
+      isActive: pathname.includes(paths.payouts.index),
+    },
+    {
+      name: "Payment Links",
+      icon: <ServicesIcon />,
+      path: paths.paymentLinks.index,
+      isActive: pathname.includes(paths.paymentLinks.index),
+    },
+    {
+      name: "Accounts",
+      icon: <AccountIcon />,
+      path: paths.accounts.index,
+      isActive: pathname.includes(paths.accounts.index),
+    },
+    {
+      name: "Statements",
+      icon: <StatementsIcon />,
+      path: paths.statements.index,
+      isActive: pathname.includes(paths.statements.index),
+    },
+    // {
+    //   name: "Services",
+    //   icon: <ServicesIcon />,
+    //   path: paths.services.index,
+    //   isActive: pathname.includes(paths.services.index),
+    //   children: [
+    //     {
+    //       name: "Local Services",
+    //       path: paths.services.local_services,
+    //     },
+    //     {
+    //       name: "Global Services",
+    //       path: paths.services.global_services,
+    //     },
+    //   ],
+    // },
     {
       name: "Settings",
       icon: <SettingsIcon />,

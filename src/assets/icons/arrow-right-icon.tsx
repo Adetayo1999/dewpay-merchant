@@ -11,10 +11,10 @@ export const ArrowRightIcon: React.FC<IconType> = ({ scale = 1 }) => (
     <path
       d="M6.46875 4.90723L11.5312 9.96973L6.46875 15.0322"
       stroke="currentColor"
-      stroke-opacity="0.4"
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeOpacity="0.4"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     />
   </svg>
 );

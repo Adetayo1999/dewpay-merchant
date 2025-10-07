@@ -5,6 +5,9 @@ import { WhiteLogo } from "@assets/icons/white-logo";
 import { CiSearch } from "react-icons/ci";
 import { FaTimes } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useAppDispatch } from "../../store/hooks";
+import { logout } from "../../store/slices/authSlice";
+import { HeaderActions } from "@components/header-actions";
 import {
   ComplianceIcon,
   DashboardIcon,
@@ -15,11 +18,13 @@ import {
   UsersIcon,
   USSDCollectIcon,
   WalletIcon,
+  AccountIcon,
+  StatementsIcon,
 } from "@assets/icons";
 import { paths } from "@routes/paths";
 import clsx from "clsx";
 import { MenuItem } from "./sidebar";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
 interface MenuItemType {
@@ -35,6 +40,32 @@ interface MenuItemType {
 
 export const Header = () => {
   const [isNavActive, setIsNavActive] = useState(false);
+  const [showUserMenu, setShowUserMenu] = useState(false);
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const userMenuRef = useRef<HTMLDivElement>(null);
+
+  const handleLogout = () => {
+    dispatch(logout());
+    navigate(paths.auth.login);
+    setShowUserMenu(false);
+  };
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        userMenuRef.current &&
+        !userMenuRef.current.contains(event.target as Node)
+      ) {
+        setShowUserMenu(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   return (
     <>
@@ -85,29 +116,51 @@ export const Header = () => {
             </button>
           </div>
         </div>
-        <div className="flex items-center gap-x-14">
+        <div className="flex items-center gap-x-4">
           <button className="hidden  rounded-full bg-[#E9ECEF40] h-[3rem] w-[3rem] md:flex items-center justify-center focus:ring-2 focus:ring-[#E9ECEF] focus:ring-opacity-40  transition-all duration-200">
             <NotificationIcon scale={0.8} />
           </button>
-          <button className="bg-[#E9ECEF40] h-[2.5rem] md:h-[3rem] rounded-[2rem] flex items-center gap-x-2 pr-2 md:pr-4 overflow-hidden focus:ring-2 focus:ring-[#E9ECEF] focus:ring-opacity-40   transition-all duration-200 ">
-            <span className="bg-[#95959B] rounded-full h-[3rem] w-[3rem] hidden md:flex items-center justify-center">
-              <UserIcon scale={0.8} />
-            </span>
-            <span className="bg-[#95959B] rounded-full  md:h-[3rem] md:w-[3rem] h-[2.5rem] w-[2.5rem] flex-shrink-0 md:hidden flex items-center justify-center">
-              <UserIcon scale={0.65} />
-            </span>
-            <span>
-              <svg
-                width="10"
-                height="5"
-                viewBox="0 0 10 5"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path d="M0 0L5 5L10 0H0Z" fill="#042425" />
-              </svg>
-            </span>
-          </button>
+
+          {/* Live/Demo Toggle and Logout */}
+          <div className="hidden md:block">
+            <HeaderActions />
+          </div>
+
+          <div className="relative md:hidden" ref={userMenuRef}>
+            <button
+              className="bg-[#E9ECEF40] h-[2.5rem] rounded-[2rem] flex items-center gap-x-2 pr-2 overflow-hidden focus:ring-2 focus:ring-[#E9ECEF] focus:ring-opacity-40 transition-all duration-200"
+              onClick={() => setShowUserMenu(!showUserMenu)}
+            >
+              <span className="bg-[#95959B] rounded-full h-[2.5rem] w-[2.5rem] flex-shrink-0 flex items-center justify-center">
+                <UserIcon scale={0.65} />
+              </span>
+              <span>
+                <svg
+                  width="10"
+                  height="5"
+                  viewBox="0 0 10 5"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d="M0 0L5 5L10 0H0Z" fill="#042425" />
+                </svg>
+              </span>
+            </button>
+
+            {showUserMenu && (
+              <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50">
+                <div className="px-4 py-2 border-b border-gray-200">
+                  <HeaderActions />
+                </div>
+                <button
+                  onClick={handleLogout}
+                  className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                >
+                  Legacy Logout
+                </button>
+              </div>
+            )}
+          </div>
         </div>
       </header>
       <MobileNavigation
@@ -175,6 +228,36 @@ const MobileNavigation: React.FC<{
       icon: <UsersIcon />,
       path: paths.users.index,
       isActive: pathname.includes(paths.users.index),
+    },
+    {
+      name: "Cashbinding",
+      icon: <USSDCollectIcon />,
+      path: paths.cashbinding.index,
+      isActive: pathname.includes(paths.cashbinding.index),
+    },
+    {
+      name: "Payouts",
+      icon: <TransactionIcon />,
+      path: paths.payouts.index,
+      isActive: pathname.includes(paths.payouts.index),
+    },
+    {
+      name: "Payment Links",
+      icon: <ServicesIcon />,
+      path: paths.paymentLinks.index,
+      isActive: pathname.includes(paths.paymentLinks.index),
+    },
+    {
+      name: "Accounts",
+      icon: <AccountIcon />,
+      path: paths.accounts.index,
+      isActive: pathname.includes(paths.accounts.index),
+    },
+    {
+      name: "Statements",
+      icon: <StatementsIcon />,
+      path: paths.statements.index,
+      isActive: pathname.includes(paths.statements.index),
     },
     {
       name: "Services",

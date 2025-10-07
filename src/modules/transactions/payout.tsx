@@ -1,4 +1,4 @@
-import { TransactionPayoutTable } from "@components/tables/transaction-payout-table";
+import { PayoutTable } from "@components/tables/payout-table";
 import { TransactionMetricsCard } from "@components/transactions-metrics-card";
 
 export default function TransactionPayout() {
@@ -8,7 +8,7 @@ export default function TransactionPayout() {
         title="Payout"
         description="Total amount of funds transferred from the wallet to linked bank accounts"
       />
-      <TransactionPayoutTable />
+      <PayoutTable />
     </div>
   );
 }

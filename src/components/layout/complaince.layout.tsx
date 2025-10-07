@@ -33,15 +33,15 @@ export const ComplianceLayout = () => {
   return (
     <div className="">
       <div className="mb-5">
-        <nav className="border-b block border-[#EAECF0]  relative">
-          <ul className="flex items-center gap-x-4 md:gap-x-6   -mb-px md:w-[80%] overflow-x-scroll">
+        <nav className="border-b block border-[#EAECF0] relative">
+          <ul className="flex items-end gap-x-4  md:gap-x-6 -mb-5 md:w-[80%] overflow-x-scroll">
             {navigation.map((item) => (
               <NavLink
                 key={item.path}
                 to={item.path}
                 className={() =>
                   clsx(
-                    "inline-block p-3 flex-shrink-0 capitalize border-b-2  min-w-[8rem] md:min-w-[9.5rem] rounded-t-lg text-xs  md:text-sm font-medium text-center",
+                    "inline-block p-3   flex-shrink-0 capitalize border-b-2  min-w-[8rem] md:min-w-[9.5rem] rounded-t-lg text-xs md:text-sm font-medium text-center",
                     item.isActive
                       ? "text-primary border-primary"
                       : "text-[#7D8592] border-transparent"

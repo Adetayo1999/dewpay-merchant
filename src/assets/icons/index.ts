@@ -10,4 +10,6 @@ export * from "./user-icon";
 export * from "./users-icon";
 export * from "./ussd-collect-icon";
 export * from "./white-logo";
+export * from "./account-icon";
+export * from "./statements-icon";
 export * from "./wallet-icon";

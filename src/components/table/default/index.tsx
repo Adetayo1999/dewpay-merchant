@@ -6,12 +6,14 @@ import {
 } from "@tanstack/react-table";
 import { MoonLoader } from "react-spinners";
 import clsx from "clsx";
+import { ReactNode } from "react";
 
 interface CustomTableProps<T> {
   className?: string;
   columns: any;
   data: T[];
   loading?: boolean;
+  emptyStateMessage?: string | ReactNode;
 }
 
 export const DefaultTable = <T,>({
@@ -19,6 +21,7 @@ export const DefaultTable = <T,>({
   data,
   className,
   loading,
+  emptyStateMessage = "No Data",
 }: CustomTableProps<T>) => {
   const table = useReactTable({
     columns,
@@ -92,10 +95,55 @@ export const DefaultTable = <T,>({
         </table>
       </div>
       {!loading && data.length === 0 && (
-        <div className="text-center min-h-[10rem]  flex justify-center items-center ">
-          <p className="text-[#8D8F9A] flex flex-col items-center">
-            <span>No Data</span>
-          </p>
+        <div className="text-center min-h-[10rem] flex justify-center items-center">
+          <div className="flex flex-col items-center justify-center py-12">
+            <div className="mb-4">
+              <svg
+                width="64"
+                height="64"
+                viewBox="0 0 64 64"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                className="text-gray-400"
+              >
+                <path
+                  d="M24 8H40L44 12H56C58.2 12 60 13.8 60 16V52C60 54.2 58.2 56 56 56H8C5.8 56 4 54.2 4 52V16C4 13.8 5.8 12 8 12H20L24 8Z"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                <path
+                  d="M24 24V48"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                <path
+                  d="M32 24V48"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                <path
+                  d="M40 24V48"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </div>
+            {typeof emptyStateMessage === "string" ? (
+              <p className="text-lg font-bold text-primary">
+                {emptyStateMessage}
+              </p>
+            ) : (
+              emptyStateMessage
+            )}
+          </div>
         </div>
       )}
     </div>

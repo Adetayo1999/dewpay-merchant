@@ -4,6 +4,9 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Import toast styles */
+@import "./styles/toast.css";
+
 body {
   font-family: "Inter", serif;
   font-optical-sizing: auto;

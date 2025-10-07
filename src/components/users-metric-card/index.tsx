@@ -1,13 +1,21 @@
 import { TrendingUpIcon } from "@assets/icons/trending-up-icon";
 import clsx from "clsx";
+import { useGetCustomerListQuery } from "../../store/api/merchantApi";
 
 export const UsersMetricCard = () => {
+  const { data: customerData, isLoading } = useGetCustomerListQuery({
+    offset: "0",
+    limit: "1", // We only need the total count, so limit to 1
+  });
+
   return (
     <div className="bg-[#122A2C] flex flex-col md:flex-row gap-y-10 justify-between  rounded-[0.938rem] py-[1.938rem]  px-[2rem] md:px-[4.563rem]">
       <div className="md:border-r border-[#FFFFFF] md:flex-[0.3] flex flex-col items-end md:items-start   md:justify-start text-right md:text-left">
-        <h2 className="font-bold text-white text-xl md:text-3xl mb-2">Users</h2>
+        <h2 className="font-bold text-white text-xl md:text-3xl mb-2">
+          Customers
+        </h2>
         <p className="text-xs md:text-base  max-w-xs    text-[#FFFFFF80]">
-          View number of unique users that patronizes your business
+          View number of unique customers that patronizes your business
         </p>
         <div className="md:hidden  w-full flex justify-end pt-4">
           <div className="w-[45%] bg-[#FFFFFF] h-[1px] bg-opacity-40 " />
@@ -40,9 +48,11 @@ export const UsersMetricCard = () => {
           </div>
           <div className="">
             <p className="text-xs md:text-sm text-[#FFFFFF80] mb-1">
-              Total Unique users
+              Total Customers
             </p>
-            <h2 className="text-white font-bold text-xl md:text-2xl ">764</h2>
+            <h2 className="text-white font-bold text-xl md:text-2xl ">
+              {isLoading ? "..." : customerData?.total || 0}
+            </h2>
           </div>
         </div>
         <div className="">

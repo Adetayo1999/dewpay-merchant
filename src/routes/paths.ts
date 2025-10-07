@@ -4,6 +4,7 @@ export const paths = {
     login: "/auth/login",
     forgot_password: "/auth/forgot_password",
     reset_password: "/auth/reset_password",
+    otp: "/auth/otp",
   },
   complaince: {
     index: "/compliance",
@@ -41,8 +42,25 @@ export const paths = {
     index: "/settings",
     notification: "/settings/notification",
     team_management: "/settings/team_management",
+    security: "/settings/security",
+    api_keys: "/settings/api-keys",
   },
   support: {
     index: "/support",
+  },
+  cashbinding: {
+    index: "/withdrawal/phone",
+  },
+  payouts: {
+    index: "/payouts",
+  },
+  paymentLinks: {
+    index: "/payment-links",
+  },
+  accounts: {
+    index: "/accounts",
+  },
+  statements: {
+    index: "/statements",
   },
 };

@@ -5,6 +5,7 @@ import { AuthLayout } from "../components/layout/auth.layout";
 import { paths } from "./paths";
 import { DashboardLayout } from "@components/layout/dashboard.layout";
 import { ComplianceLayout, SettingsLayout } from "@components/layout";
+import { ProtectedRoute } from "../components/auth";
 
 const getElement = (
   Page: React.LazyExoticComponent<() => JSX.Element>,
@@ -37,10 +38,18 @@ const router = createBrowserRouter([
         path: paths.auth.reset_password,
         element: getElement(pages.ResetPasswordPage),
       },
+      {
+        path: paths.auth.otp,
+        element: getElement(pages.OtpPage),
+      },
     ],
   },
   {
-    element: <DashboardLayout />,
+    element: (
+      <ProtectedRoute>
+        <DashboardLayout />
+      </ProtectedRoute>
+    ),
     children: [
       {
         element: <ComplianceLayout />,
@@ -160,6 +169,14 @@ const router = createBrowserRouter([
             element: getElement(pages.TeamManagementPage),
             path: paths.settings.team_management,
           },
+          {
+            element: getElement(pages.SecuritySettingsPage),
+            path: paths.settings.security,
+          },
+          {
+            element: getElement(pages.ApiKeysSettingsPage),
+            path: paths.settings.api_keys,
+          },
         ],
       },
       {
@@ -171,7 +188,56 @@ const router = createBrowserRouter([
           },
         ],
       },
+      {
+        element: <Outlet />,
+        children: [
+          {
+            element: getElement(pages.CashbindingPage),
+            path: paths.cashbinding.index,
+          },
+        ],
+      },
+      {
+        element: <Outlet />,
+        children: [
+          {
+            element: getElement(pages.PayoutsPage),
+            path: paths.payouts.index,
+          },
+        ],
+      },
+      {
+        element: <Outlet />,
+        children: [
+          {
+            element: getElement(pages.PaymentLinksPage),
+            path: paths.paymentLinks.index,
+          },
+        ],
+      },
+      {
+        element: <Outlet />,
+        children: [
+          {
+            element: getElement(pages.AccountsPage),
+            path: paths.accounts.index,
+          },
+        ],
+      },
+      {
+        element: <Outlet />,
+        children: [
+          {
+            element: getElement(pages.StatementsPage),
+            path: paths.statements.index,
+          },
+        ],
+      },
     ],
+  },
+  {
+    path: "*",
+    element: getElement(pages.NotFoundPage),
   },
 ]);
 

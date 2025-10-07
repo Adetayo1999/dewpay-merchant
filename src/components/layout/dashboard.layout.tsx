@@ -2,8 +2,45 @@ import { Header } from "@components/skeleton/header";
 import { Sidebar } from "@components/skeleton/sidebar";
 import ModalProvider from "context/modal";
 import { Outlet } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 export const DashboardLayout = () => {
+  const [currentDate, setCurrentDate] = useState(new Date());
+  const [greeting, setGreeting] = useState("");
+
+  useEffect(() => {
+    const updateDateTime = () => {
+      const now = new Date();
+      setCurrentDate(now);
+
+      const hour = now.getHours();
+      if (hour < 12) {
+        setGreeting("Good morning");
+      } else if (hour < 17) {
+        setGreeting("Good afternoon");
+      } else {
+        setGreeting("Good evening");
+      }
+    };
+
+    // Update immediately
+    updateDateTime();
+
+    // Update every minute
+    const interval = setInterval(updateDateTime, 60000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  const formatDate = (date: Date) => {
+    return date.toLocaleDateString("en-US", {
+      weekday: "long",
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+    });
+  };
+
   return (
     <ModalProvider>
       <div className="">
@@ -50,10 +87,10 @@ export const DashboardLayout = () => {
                 </svg>
               </span>
               <span className="text-xs md:text-sm text-[#7D8592] font-medium">
-                Friday, Oct 25 2022.
+                {formatDate(currentDate)}
               </span>
             </p>
-            <h2 className="font-bold text-[#7D8592] text-2xl">Good evening</h2>
+            <h2 className="font-bold text-[#7D8592] text-2xl">{greeting}</h2>
           </div>
           <div className="md:grid grid-cols-12 gap-x-6 ">
             <div className="col-span-2 mb-5 md:mb-0 hidden md:block">

@@ -9,6 +9,7 @@ export const ForgotPasswordPage = lazy(
 export const ResetPasswordPage = lazy(
   () => import("@modules/auth/reset_password")
 );
+export const OtpPage = lazy(() => import("@modules/auth/otp"));
 
 // Compliance Module
 export const BusinessInformationPage = lazy(
@@ -41,7 +42,7 @@ export const USSDCollecCollections = lazy(
   () => import("@modules/ussd-collect/collections")
 );
 
-// Users
+// Users/Customers
 export const UsersPage = lazy(() => import("@modules/users"));
 export const UserInformation = lazy(() => import("@modules/users/information"));
 
@@ -63,3 +64,29 @@ export const TeamManagementPage = lazy(
 );
 
 export const CustomerSupportPage = lazy(() => import("@modules/support"));
+
+// Cashbinding
+export const CashbindingPage = lazy(() => import("@modules/cashbinding"));
+
+// Payouts
+export const PayoutsPage = lazy(() => import("@modules/payouts"));
+
+// Payment Links
+export const PaymentLinksPage = lazy(() => import("@modules/payment-links"));
+
+// Accounts
+export const AccountsPage = lazy(() => import("@modules/accounts"));
+
+// Statements
+export const StatementsPage = lazy(() => import("@modules/statements"));
+
+// Settings
+export const SecuritySettingsPage = lazy(
+  () => import("@modules/settings/security")
+);
+export const ApiKeysSettingsPage = lazy(
+  () => import("@modules/settings/api-keys")
+);
+
+// Error Pages
+export const NotFoundPage = lazy(() => import("@modules/error/not-found"));
