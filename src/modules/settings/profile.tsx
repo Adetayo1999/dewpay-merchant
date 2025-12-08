@@ -1,6 +1,5 @@
 import { useAppSelector } from "../../store/hooks";
 import { useGetProfileQuery } from "../../store/api/merchantApi";
-import { format } from "date-fns";
 
 export default function ProfilePage() {
   const { user } = useAppSelector((state) => state.auth);
