@@ -7,10 +7,11 @@ import {
   useLoginMutation,
   useRegisterMutation,
   useForgotPasswordMutation,
+  useLazyGetProfileQuery,
 } from "../../store/api/merchantApi";
 import { useAppDispatch } from "../../store/hooks";
-import { setCredentials } from "../../store/slices/authSlice";
-import { decodeJWT, extractUserFromJWT } from "../../lib/jwt";
+import { setCredentials, setProfile } from "../../store/slices/authSlice";
+import { decodeJWT } from "../../lib/jwt";
 import {
   showApiErrorToast,
   showApiSuccessToast,
@@ -42,6 +43,7 @@ export const OTPForm = () => {
     useRegisterMutation();
   const [forgotPassword, { isLoading: isForgotPasswordLoading }] =
     useForgotPasswordMutation();
+  const [getProfile] = useLazyGetProfileQuery();
 
   const {
     handleSubmit,
@@ -85,20 +87,50 @@ export const OTPForm = () => {
             otp_code: data.otp_code,
           }).unwrap();
 
-          // Decode JWT to extract user data
+          // Decode JWT to extract merchant_id
           const decodedPayload = decodeJWT(loginResult.token);
           if (!decodedPayload) {
             throw new Error("Failed to decode authentication token");
           }
 
-          const user = extractUserFromJWT(decodedPayload);
+          const merchantId = decodedPayload.merchant_id;
+          if (!merchantId) {
+            throw new Error("Merchant ID not found in token");
+          }
 
+          // Store token first
           dispatch(
             setCredentials({
-              user,
+              user: {
+                merchant_id: merchantId,
+                email: email,
+                first_name: "",
+                last_name: "",
+                full_name: null,
+                phone: null,
+                wallet_no: null,
+                account_no: null,
+                account_name: null,
+                reference: "",
+                bank: null,
+                status: "",
+                onedisk_id: null,
+                onedisk_access_token: null,
+              },
               token: loginResult.token,
             })
           );
+
+          // Fetch profile and update user data
+          try {
+            const profileResult = await getProfile({
+              merchant_id: merchantId,
+            }).unwrap();
+            dispatch(setProfile(profileResult));
+          } catch (profileError) {
+            console.error("Failed to fetch profile:", profileError);
+            // Continue even if profile fetch fails
+          }
 
           showApiSuccessToast("Login successful! Welcome back.");
 

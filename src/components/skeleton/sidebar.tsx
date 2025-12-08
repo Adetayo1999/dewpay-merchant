@@ -4,7 +4,6 @@ import {
   DashboardIcon,
   ServicesIcon,
   SettingsIcon,
-  SupportIcon,
   TransactionIcon,
   UsersIcon,
   USSDCollectIcon,
@@ -157,18 +156,6 @@ export const Sidebar = () => {
           <MenuItem {...item} key={idx} />
         ))}
       </ul>
-      <button
-        className={clsx(
-          "w-full h-[3.438rem] gap-x-6 items-center px-[1.563rem] text-sm py-[1.063rem] flex  transition duration-300  text-[#7D8592]  shadow-[0px_0px_17.21px_0px_#0000001A] rounded-xl font-medium",
-          location.pathname === paths.support.index && "bg-[#3B3F47] text-white"
-        )}
-        onClick={() => navigate(paths.support.index)}
-      >
-        <span>
-          <SupportIcon scale={1.2} />
-        </span>
-        <span>Chat Support</span>
-      </button>
     </div>
   );
 };

@@ -166,10 +166,6 @@ const router = createBrowserRouter([
             path: paths.settings.notification,
           },
           {
-            element: getElement(pages.TeamManagementPage),
-            path: paths.settings.team_management,
-          },
-          {
             element: getElement(pages.SecuritySettingsPage),
             path: paths.settings.security,
           },
@@ -177,14 +173,9 @@ const router = createBrowserRouter([
             element: getElement(pages.ApiKeysSettingsPage),
             path: paths.settings.api_keys,
           },
-        ],
-      },
-      {
-        element: <Outlet />,
-        children: [
           {
-            element: getElement(pages.CustomerSupportPage),
-            path: paths.support.index,
+            element: getElement(pages.ProfilePage),
+            path: paths.settings.profile,
           },
         ],
       },

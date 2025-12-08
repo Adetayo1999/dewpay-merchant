@@ -12,7 +12,7 @@ export const ModalContainer: React.FC<{
 
   return (
     <div
-      className="py-[5rem] px-[10rem] 2xl:px-[13.313rem] 2xl:py-[7.875rem] bg-[#D9D9D966]   h-screen overflow-y-auto  fixed top-0 left-0 w-full z-[10000] flex justify-center items-center "
+      className="py-[5rem] px-[10rem] 2xl:px-[13.313rem] 2xl:py-[7.875rem] bg-[#D9D9D966]   h-screen overflow-y-auto  fixed top-0 left-0 w-full z-[1000000000] flex justify-center items-center "
       onClick={() => setModalContent(null)}
     >
       <motion.div

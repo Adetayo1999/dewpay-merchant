@@ -7,24 +7,20 @@ import {
 
 // Types for API responses
 export interface User {
-  id: string;
-  email: string;
-  firstName: string;
-  lastName: string;
-  role: string;
-  status: "active" | "inactive";
-  createdAt: string;
   merchant_id: string;
+  email: string;
+  first_name: string;
+  last_name: string;
+  full_name: string | null;
+  phone: string | null;
   wallet_no: string | null;
   account_no: string | null;
   account_name: string | null;
   reference: string;
   bank: string | null;
+  status: string;
   onedisk_id: string | null;
-  full_name: string | null;
   onedisk_access_token: string | null;
-  phone: string | null;
-  iat: number;
 }
 
 export interface Transaction {
@@ -455,6 +451,31 @@ export interface ValidatePinRequest {
 export interface ValidatePinResponse {
   success: boolean;
   message: string;
+}
+
+export interface Profile {
+  message: string;
+  success: boolean;
+  error: boolean;
+  code: string;
+  merchant_id: string;
+  wallet_no: string | null;
+  account_no: string | null;
+  account_name: string | null;
+  reference: string;
+  bank: string | null;
+  onedisk_id: string | null;
+  full_name: string | null;
+  email: string;
+  onedisk_access_token: string | null;
+  phone: string | null;
+  first_name: string;
+  last_name: string;
+  status: string;
+}
+
+export interface GetProfileRequest {
+  merchant_id: string;
 }
 
 // Base query for auth endpoints (no /v1 prefix)
@@ -1020,6 +1041,16 @@ export const merchantApi = createApi({
       ],
     }),
 
+    // Profile endpoints
+    getProfile: builder.query<Profile, GetProfileRequest>({
+      query: (data) => ({
+        url: "/Profile/Get",
+        method: "POST",
+        body: data,
+      }),
+      providesTags: ["User"],
+    }),
+
     // Security endpoints
     generateSecretKey: builder.mutation<GenerateSecretKeyResponse, void>({
       query: () => ({
@@ -1181,6 +1212,9 @@ export const {
   useSetAccountPinMutation,
   // Statements hooks
   useGetAccountStatementsQuery,
+  // Profile hooks
+  useGetProfileQuery,
+  useLazyGetProfileQuery,
   // Security hooks
   useGenerateSecretKeyMutation,
   useSetPinMutation,

@@ -5,7 +5,7 @@ import { createColumnHelper } from "@tanstack/react-table";
 import { useGetPaymentLinksQuery } from "../../store/api/merchantApi";
 import { format } from "date-fns";
 import {
-  showCopySuccessToast,
+  // showCopySuccessToast,
   showApiSuccessToast,
   showApiErrorToast,
 } from "@components/toast/custom-toast";
@@ -199,7 +199,7 @@ export const PaymentLinksTable = ({
               />
             </svg>
           </button>
-          <button
+          {/* <button
             onClick={() => {
               navigator.clipboard.writeText(props.row.original.payment_link);
               showCopySuccessToast();
@@ -220,7 +220,7 @@ export const PaymentLinksTable = ({
                 d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
               />
             </svg>
-          </button>
+          </button> */}
         </div>
       ),
     }),

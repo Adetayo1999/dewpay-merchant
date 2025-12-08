@@ -1,19 +1,15 @@
 import { LogoIcon } from "@assets/icons";
 import { NotificationIcon } from "@assets/icons/notitfication-icon";
-import { UserIcon } from "@assets/icons/user-icon";
 import { WhiteLogo } from "@assets/icons/white-logo";
 import { CiSearch } from "react-icons/ci";
 import { FaTimes } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { useAppDispatch } from "../../store/hooks";
-import { logout } from "../../store/slices/authSlice";
 import { HeaderActions } from "@components/header-actions";
 import {
   ComplianceIcon,
   DashboardIcon,
   ServicesIcon,
   SettingsIcon,
-  SupportIcon,
   TransactionIcon,
   UsersIcon,
   USSDCollectIcon,
@@ -24,7 +20,7 @@ import {
 import { paths } from "@routes/paths";
 import clsx from "clsx";
 import { MenuItem } from "./sidebar";
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
 interface MenuItemType {
@@ -40,32 +36,6 @@ interface MenuItemType {
 
 export const Header = () => {
   const [isNavActive, setIsNavActive] = useState(false);
-  const [showUserMenu, setShowUserMenu] = useState(false);
-  const dispatch = useAppDispatch();
-  const navigate = useNavigate();
-  const userMenuRef = useRef<HTMLDivElement>(null);
-
-  const handleLogout = () => {
-    dispatch(logout());
-    navigate(paths.auth.login);
-    setShowUserMenu(false);
-  };
-
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        userMenuRef.current &&
-        !userMenuRef.current.contains(event.target as Node)
-      ) {
-        setShowUserMenu(false);
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
 
   return (
     <>
@@ -91,16 +61,19 @@ export const Header = () => {
             </svg>
           </button>
         </div>
-        <div className="flex gap-x-2 items-center">
-          <Link to="/" className="hidden md:inline-block">
+        <div className="">
+          <Link to="/" className="hidden  md:inline-flex gap-x-2 items-center">
             <WhiteLogo />
+            <h3 className="font-bold text-lg md:text-[1.25rem] text-white">
+              DewPay
+            </h3>
           </Link>
-          <Link to="/" className="md:hidden">
+          <Link to="/" className="md:hidden flex gap-x-2 items-center">
             <WhiteLogo scale={0.85} />
+            <h3 className="font-bold text-lg md:text-[1.25rem] text-white">
+              DewPay
+            </h3>
           </Link>
-          <h3 className="font-bold text-lg md:text-[1.25rem] text-white">
-            DewPay
-          </h3>
         </div>
         <div className="hidden md:block relative">
           <input
@@ -121,45 +94,9 @@ export const Header = () => {
             <NotificationIcon scale={0.8} />
           </button>
 
-          {/* Live/Demo Toggle and Logout */}
-          <div className="hidden md:block">
+          {/* Live/Demo Toggle and User Menu */}
+          <div className="flex items-center">
             <HeaderActions />
-          </div>
-
-          <div className="relative md:hidden" ref={userMenuRef}>
-            <button
-              className="bg-[#E9ECEF40] h-[2.5rem] rounded-[2rem] flex items-center gap-x-2 pr-2 overflow-hidden focus:ring-2 focus:ring-[#E9ECEF] focus:ring-opacity-40 transition-all duration-200"
-              onClick={() => setShowUserMenu(!showUserMenu)}
-            >
-              <span className="bg-[#95959B] rounded-full h-[2.5rem] w-[2.5rem] flex-shrink-0 flex items-center justify-center">
-                <UserIcon scale={0.65} />
-              </span>
-              <span>
-                <svg
-                  width="10"
-                  height="5"
-                  viewBox="0 0 10 5"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path d="M0 0L5 5L10 0H0Z" fill="#042425" />
-                </svg>
-              </span>
-            </button>
-
-            {showUserMenu && (
-              <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50">
-                <div className="px-4 py-2 border-b border-gray-200">
-                  <HeaderActions />
-                </div>
-                <button
-                  onClick={handleLogout}
-                  className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                >
-                  Legacy Logout
-                </button>
-              </div>
-            )}
           </div>
         </div>
       </header>
@@ -333,22 +270,6 @@ const MobileNavigation: React.FC<{
                 <MenuItem {...item} key={idx} onClick={closeModal} />
               ))}
             </ul>
-            <button
-              className={clsx(
-                "w-full h-[3.438rem] gap-x-6 items-center px-[1.563rem] text-xs py-[1.063rem] flex  transition duration-300  text-[#7D8592]  shadow-[0px_0px_17.21px_0px_#0000001A] rounded-xl font-medium",
-                location.pathname === paths.support.index &&
-                  "bg-[#3B3F47] text-white"
-              )}
-              onClick={() => {
-                navigate(paths.support.index);
-                closeModal();
-              }}
-            >
-              <span>
-                <SupportIcon scale={1.2} />
-              </span>
-              <span>Chat Support</span>
-            </button>
           </div>
 
           <div className="absolute text-gray-400 text-[0.625rem] font-medium text-center bottom-4 w-full">

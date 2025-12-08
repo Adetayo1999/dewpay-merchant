@@ -38,10 +38,12 @@ export const ViewPaymentLinkModal = ({
 }: ViewPaymentLinkModalProps) => {
   const [isEditing, setIsEditing] = useState(false);
   const [isUpdating, setIsUpdating] = useState(false);
+  const [currentPaymentId, setCurrentPaymentId] = useState<string | null>(null);
 
   const {
     data: paymentLink,
     isLoading,
+    isFetching,
     error,
   } = useGetPaymentLinkQuery(
     { payment_id: paymentId! },
@@ -68,9 +70,29 @@ export const ViewPaymentLinkModal = ({
 
   const [updatePaymentLink] = useUpdatePaymentLinkMutation();
 
-  // Reset form when payment link data changes
+  // Track paymentId changes and reset state
   React.useEffect(() => {
-    if (paymentLink) {
+    if (paymentId && paymentId !== currentPaymentId) {
+      setCurrentPaymentId(paymentId);
+      setIsEditing(false);
+      setIsUpdating(false);
+      // Reset form to default values when paymentId changes
+      reset({
+        url_name: "",
+        description: "",
+        amount: 0,
+        status: "active",
+        redirect_url: "",
+        webhook_url: "",
+        notification_email: "",
+        success_message: "",
+      });
+    }
+  }, [paymentId, currentPaymentId, reset]);
+
+  // Reset form when payment link data changes and matches current paymentId
+  React.useEffect(() => {
+    if (paymentLink && paymentLink.payment_id === currentPaymentId) {
       reset({
         url_name: paymentLink.url_name,
         description: paymentLink.description,
@@ -82,7 +104,7 @@ export const ViewPaymentLinkModal = ({
         success_message: paymentLink.success_message,
       });
     }
-  }, [paymentLink, reset]);
+  }, [paymentLink, currentPaymentId, reset]);
 
   const handleUpdate = useCallback(
     async (data: PaymentLinkForm) => {
@@ -129,12 +151,23 @@ export const ViewPaymentLinkModal = ({
   const handleClose = useCallback(() => {
     setIsEditing(false);
     setIsUpdating(false);
+    setCurrentPaymentId(null);
     onClose();
   }, [onClose]);
 
   if (!isOpen || !paymentId) return null;
 
-  if (isLoading) {
+  // Show loading if:
+  // 1. Initial load (isLoading)
+  // 2. Refetching and paymentId changed (isFetching and data doesn't match current paymentId)
+  // 3. No data yet or data doesn't match current paymentId
+  const isDataLoading =
+    isLoading ||
+    (isFetching && paymentLink?.payment_id !== currentPaymentId) ||
+    !paymentLink ||
+    paymentLink.payment_id !== currentPaymentId;
+
+  if (isDataLoading) {
     return (
       <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
         <div className="bg-white rounded-lg shadow-xl p-8">

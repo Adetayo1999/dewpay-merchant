@@ -87,6 +87,7 @@ export const SecuritySettingsPage = lazy(
 export const ApiKeysSettingsPage = lazy(
   () => import("@modules/settings/api-keys")
 );
+export const ProfilePage = lazy(() => import("@modules/settings/profile"));
 
 // Error Pages
 export const NotFoundPage = lazy(() => import("@modules/error/not-found"));

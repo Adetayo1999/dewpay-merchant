@@ -32,9 +32,9 @@ export const ComplianceLayout = () => {
 
   return (
     <div className="">
-      <div className="mb-5">
+      <div className="mb-10">
         <nav className="border-b block border-[#EAECF0] relative">
-          <ul className="flex items-end gap-x-4  md:gap-x-6 -mb-5 md:w-[80%] overflow-x-scroll">
+          <ul className="flex items-end gap-x-4  md:gap-x-6  md:w-[80%] overflow-x-scroll">
             {navigation.map((item) => (
               <NavLink
                 key={item.path}

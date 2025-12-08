@@ -44,6 +44,7 @@ export const paths = {
     team_management: "/settings/team_management",
     security: "/settings/security",
     api_keys: "/settings/api-keys",
+    profile: "/settings/profile",
   },
   support: {
     index: "/support",

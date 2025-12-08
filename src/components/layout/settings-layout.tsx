@@ -7,16 +7,16 @@ export const SettingsLayout = () => {
 
   const navigation = [
     {
+      title: "Profile",
+      path: paths.settings.profile,
+      isActive: pathname === paths.settings.profile,
+    },
+    {
       title: "Notification",
       path: paths.settings.notification,
       isActive:
         pathname === paths.settings.notification ||
         pathname === paths.settings.index,
-    },
-    {
-      title: "Team Management",
-      path: paths.settings.team_management,
-      isActive: pathname === paths.settings.team_management,
     },
     {
       title: "Security",
@@ -35,8 +35,9 @@ export const SettingsLayout = () => {
       <div className="mb-5">
         <nav className="border-b block border-[#EAECF0]  relative">
           <ul className="flex items-center gap-x-6   -mb-px md:w-[80%] overflow-x-scroll">
-            {navigation.map((item) => (
+            {navigation.map((item, key) => (
               <NavLink
+                key={key}
                 to={item.path}
                 className={() =>
                   clsx(

@@ -3,8 +3,12 @@ import { Sidebar } from "@components/skeleton/sidebar";
 import ModalProvider from "context/modal";
 import { Outlet } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { useProfileInit } from "../../hooks/useProfileInit";
+import { useAppSelector } from "../../store/hooks";
 
 export const DashboardLayout = () => {
+  useProfileInit(); // Initialize profile on dashboard load
+  const { user } = useAppSelector((state) => state.auth);
   const [currentDate, setCurrentDate] = useState(new Date());
   const [greeting, setGreeting] = useState("");
 
@@ -14,13 +18,15 @@ export const DashboardLayout = () => {
       setCurrentDate(now);
 
       const hour = now.getHours();
-      if (hour < 12) {
-        setGreeting("Good morning");
-      } else if (hour < 17) {
-        setGreeting("Good afternoon");
-      } else {
-        setGreeting("Good evening");
-      }
+      const firstName = user?.first_name || "";
+      const greetingBase =
+        hour < 12
+          ? "Good morning"
+          : hour < 17
+          ? "Good afternoon"
+          : "Good evening";
+
+      setGreeting(firstName ? `${greetingBase} ${firstName}` : greetingBase);
     };
 
     // Update immediately
@@ -30,7 +36,7 @@ export const DashboardLayout = () => {
     const interval = setInterval(updateDateTime, 60000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [user?.first_name]);
 
   const formatDate = (date: Date) => {
     return date.toLocaleDateString("en-US", {
