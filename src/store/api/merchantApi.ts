@@ -102,13 +102,12 @@ export interface MerchantBalance {
   };
 }
 
-// Duplicate removed - see ReservedAccount definition below
-
 export interface CreateAccountRequest {
   email: string;
   reference: string;
   phone: string;
   account_name: string;
+  bvn: string;
 }
 
 export interface DynamicAccount {
@@ -228,6 +227,7 @@ export interface BulkTransferRequest {
 export interface PaymentLink {
   payment_link: string;
   pay_type: "fixed" | "flexible";
+  link_name: string;
   url_name: string;
   banner_url: string;
   logo_url: string;
@@ -274,6 +274,7 @@ export interface PaymentLinkRequest {
   message?: string;
   bank_code?: string;
   account_number?: string;
+  link_name?: string;
 }
 
 export interface Checkout {

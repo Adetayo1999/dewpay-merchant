@@ -19,6 +19,7 @@ interface CreateAccountForm {
   account_name: string;
   email: string;
   phone: string;
+  bvn: string;
 }
 
 export const CreateAccountModal = ({
@@ -38,6 +39,7 @@ export const CreateAccountModal = ({
       account_name: "",
       email: "",
       phone: "",
+      bvn: "",
     },
   });
 
@@ -73,29 +75,6 @@ export const CreateAccountModal = ({
     if (cleaned.length > 15) {
       return "Phone number must not exceed 15 digits";
     }
-
-    // // Check different Nigerian phone number formats
-    // let isValid = false;
-
-    // // Format: 234XXXXXXXXX (13 digits, starts with 234)
-    // if (cleaned.length === 13 && cleaned.startsWith("234")) {
-    //   const numberPart = cleaned.substring(3); // Remove 234 prefix
-    //   isValid = /^[789]\d{8}$/.test(numberPart);
-    // }
-    // // Format: 0XXXXXXXXX (11 digits, starts with 0)
-    // else if (cleaned.length === 11 && cleaned.startsWith("0")) {
-    //   const numberPart = cleaned.substring(1); // Remove 0 prefix
-    //   isValid = /^[789]\d{8}$/.test(numberPart);
-    // }
-    // // Format: XXXXXXXXX (10 digits)
-    // else if (cleaned.length === 10) {
-    //   isValid = /^[789]\d{8}$/.test(cleaned);
-    // }
-
-    // if (!isValid) {
-    //   return "Please enter a valid Nigerian phone number";
-    // }
-
     return true;
   }, []);
 
@@ -117,6 +96,7 @@ export const CreateAccountModal = ({
           phone: formattedPhone,
           account_name: data.account_name,
           email: data.email,
+          bvn: data.bvn,
         };
 
         await createReservedAccount(payload).unwrap();
@@ -250,6 +230,30 @@ export const CreateAccountModal = ({
               <p className="text-red-500 text-xs mt-1">
                 {errors.phone.message}
               </p>
+            )}
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Bank Verification Number (BVN){" "}
+              <span className="text-red-500">*</span>
+            </label>
+            <input
+              type="text"
+              {...register("bvn", {
+                required: "bvn is required",
+                minLength: { value: 11, message: "Minimum 11 characters" },
+                maxLength: { value: 11, message: "Maximum 11 characters" },
+                // pattern: {
+                //   value: /\D/g,
+                //   message: "Only numbers allowed",
+                // },
+              })}
+              placeholder="Please enter the full name for this account."
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
+            />
+            {errors.bvn && (
+              <p className="text-red-500 text-xs mt-1">{errors.bvn.message}</p>
             )}
           </div>
 

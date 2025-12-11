@@ -35,6 +35,7 @@ interface PaymentLinkForm {
   webhook_url: string;
   notification_email: string;
   success_message: string;
+  link_name: string;
 }
 
 interface ImageData {
@@ -226,6 +227,7 @@ export const NewPaymentLinkModal = ({
             payment_id,
             pay_type: data.pay_type,
             url_name: data.url_name,
+            link_name: data.link_name,
             description: data.description,
             amount: data.amount,
             bank_code: data.bank_code,
@@ -398,8 +400,8 @@ export const NewPaymentLinkModal = ({
                     </label>
                     <input
                       type="text"
-                      {...register("url_name", {
-                        required: "URL name is required",
+                      {...register("link_name", {
+                        required: "Link name is required",
                         minLength: {
                           value: 3,
                           message: "Minimum 3 characters",

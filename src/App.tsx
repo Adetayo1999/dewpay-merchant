@@ -22,7 +22,7 @@ function App() {
           }}
           containerStyle={{
             top: 20,
-            right: 20,
+            right: 20
           }}
         />
       </Provider>

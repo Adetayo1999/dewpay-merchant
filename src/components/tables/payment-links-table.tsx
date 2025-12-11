@@ -17,6 +17,7 @@ interface PaymentLinksTableProps {
 }
 
 interface PaymentLinkRow {
+  link_name: string;
   id: string;
   url_name: string;
   payment_link: string;
@@ -60,6 +61,7 @@ export const PaymentLinksTable = ({
       pay_type: link.pay_type,
       amount: link.amount,
       created_at: link.created_at,
+      link_name: link.link_name,
     }));
   }, [filteredData]);
 
@@ -68,7 +70,7 @@ export const PaymentLinksTable = ({
     setIsExporting(true);
     try {
       const exportData = tableData.map((link) => ({
-        "Link Name": link.url_name,
+        "Link Name": link.link_name,
         "Payment Link": link.payment_link,
         Type: link.pay_type.charAt(0).toUpperCase() + link.pay_type.slice(1),
         Amount: `₦${link.amount.toLocaleString()}`,
@@ -100,7 +102,7 @@ export const PaymentLinksTable = ({
   // Define table columns
   const columnHelper = createColumnHelper<PaymentLinkRow>();
   const columns = [
-    columnHelper.accessor("url_name", {
+    columnHelper.accessor("link_name", {
       header: "Link Name",
       cell: (props) => (
         <div className="max-w-[200px]">
