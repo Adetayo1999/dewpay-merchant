@@ -1,19 +1,19 @@
 import { motion, AnimatePresence } from "framer-motion";
 import {
-  ComplianceIcon,
+  // ComplianceIcon,
   DashboardIcon,
   ServicesIcon,
   SettingsIcon,
   TransactionIcon,
   UsersIcon,
-  USSDCollectIcon,
+  // USSDCollectIcon,
   WalletIcon,
   AccountIcon,
   StatementsIcon,
 } from "@assets/icons";
 import { paths } from "@routes/paths";
 import clsx from "clsx";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 export interface MenuItemType {
   name: string;
@@ -29,7 +29,7 @@ export interface MenuItemType {
 
 export const Sidebar = () => {
   const pathname = useLocation().pathname;
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const navigations: Array<MenuItemType> = [
     {
@@ -82,18 +82,18 @@ export const Sidebar = () => {
       path: paths.users.index,
       isActive: pathname.includes(paths.users.index),
     },
-    {
-      name: "Cashbinding",
-      icon: <USSDCollectIcon />, // Using USSD icon as placeholder
-      path: paths.cashbinding.index,
-      isActive: pathname.includes(paths.cashbinding.index),
-    },
-    {
-      name: "Payouts",
-      icon: <TransactionIcon />,
-      path: paths.payouts.index,
-      isActive: pathname.includes(paths.payouts.index),
-    },
+    // {
+    //   name: "Cashbinding",
+    //   icon: <USSDCollectIcon />, // Using USSD icon as placeholder
+    //   path: paths.cashbinding.index,
+    //   isActive: pathname.includes(paths.cashbinding.index),
+    // },
+    // {
+    //   name: "Payouts",
+    //   icon: <TransactionIcon />,
+    //   path: paths.payouts.index,
+    //   isActive: pathname.includes(paths.payouts.index),
+    // },
     {
       name: "Payment Links",
       icon: <ServicesIcon />,
@@ -138,11 +138,11 @@ export const Sidebar = () => {
 
   return (
     <div className="flex flex-col gap-y-[0.875rem]">
-      <button
+      {/* <button
         className={clsx(
           "w-full h-[3.438rem] gap-x-6 items-center px-[1.563rem] text-sm py-[1.063rem] flex text-[#7D8592]  transition duration-300   shadow-[0px_0px_17.21px_0px_#0000001A] rounded-xl font-medium",
           location.pathname.includes(paths.complaince.index) &&
-            "text-white bg-primary"
+            "text-white bg-primary",
         )}
         onClick={() => navigate(paths.complaince.index)}
       >
@@ -150,7 +150,7 @@ export const Sidebar = () => {
           <ComplianceIcon />
         </span>
         <span>Compliance</span>
-      </button>
+      </button> */}
       <ul className="bg-white rounded-[0.938rem] shadow-[0px_0px_25px_0px_#0000001A] min-h-[25rem] py-[2rem] px-[1.875rem] flex flex-col gap-y-[1.75rem]">
         {navigations.map((item, idx) => (
           <MenuItem {...item} key={idx} />
@@ -176,7 +176,7 @@ export const MenuItem: React.FC<MenuItemType> = ({
         to={path}
         className={clsx(
           "text-[#7D8592] hover:text-primary flex items-center gap-x-3 transition duration-300",
-          isActive && "text-primary font-bold"
+          isActive && "text-primary font-bold",
         )}
       >
         <div className="flex items-center gap-x-4">
@@ -187,7 +187,7 @@ export const MenuItem: React.FC<MenuItemType> = ({
           <span
             className={clsx(
               "transition duration-300",
-              !isActive && "rotate-180"
+              !isActive && "rotate-180",
             )}
           >
             <svg
@@ -223,7 +223,7 @@ export const MenuItem: React.FC<MenuItemType> = ({
                   "border-l-2 px-8 py-2 hover:bg-primary hover:bg-opacity-5 text-[#7D8592] hover:text-primary transition duration-300",
                   pathname === child.path || (idx === 0 && pathname === path)
                     ? "border-primary text-primary font-bold bg-primary bg-opacity-5"
-                    : "border-[#D9D9D9]"
+                    : "border-[#D9D9D9]",
                 )}
                 initial={{ borderColor: "#D9D9D9" }}
                 animate={{
